@@ -2,13 +2,18 @@ import logging
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, List, Optional, Tuple
+import socket
 
 import numpy as np
 import numpy.typing as npt
 import struct
 
 from .buffer import Buffer as Buffer
-from .buffer import Quaternion, Vector3
+from .buffer import Quaternion as Quaternion
+from .buffer import Vector3 as Vector3
+
+
+Version = Tuple[int, int, int, int]
 
 
 @dataclass
@@ -22,27 +27,27 @@ class FramePrefixData:
 
 
 @dataclass
-class MarkerData:
+class MarkerSet:
     model_name: str = ""
     marker_positions: List[Vector3] = field(default_factory=list)
 
 
 @dataclass
 class MarkerSetData:
-    markers: List[MarkerData] = field(default_factory=list)
-    unlabeled_markers: MarkerData = MarkerData()
+    marker_sets: List[MarkerSet] = field(default_factory=list)
+    unlabeled_markers: MarkerSet = field(default_factory=MarkerSet)
 
     @classmethod
     def unpack(cls, data: Buffer) -> 'MarkerSetData':
         marker_set_data = cls()
         marker_set_count = data.read_int()
         for i in range(marker_set_count):
-            marker_data = MarkerData()
+            marker_data = MarkerSet()
             marker_data.model_name = data.read_string()
             marker_count = data.read_int()
             for j in range(marker_count):
                 marker_data.marker_positions.append(data.read_vector())
-            marker_set_data.markers.append(marker_data)
+            marker_set_data.marker_sets.append(marker_data)
 
         unlabeled_markers_count = data.read_int()
         ps = marker_set_data.unlabeled_markers.marker_positions
@@ -53,7 +58,7 @@ class MarkerSetData:
 
 @dataclass
 class RigidBodyMarker:
-    position: Vector3 = np.zeros(3)
+    position: Vector3 = field(default_factory=lambda: np.zeros(3))
     id_num: int = 0
     size: float = 0.0
     error: float = 0.0
@@ -96,18 +101,13 @@ class RigidBody:
         return rigid_body
 
 
-@dataclass
-class RigidBodyData:
-    rigid_bodies: List[RigidBody] = field(default_factory=list)
-
-    @classmethod
-    def unpack(cls, data: Buffer, major: int, minor: int) -> 'RigidBodyData':
-        rigid_body_data = cls()
-        rigid_body_count = data.read_int()
-        for i in range(rigid_body_count):
-            rigid_body = RigidBody.unpack(data, major, minor)
-            rigid_body_data.rigid_bodies.append(rigid_body)
-        return rigid_body_data
+def unpack_rigid_bodies(data: Buffer, major: int, minor: int) -> List[RigidBody]:
+    rigid_bodies: List[RigidBody] = []
+    rigid_body_count = data.read_int()
+    for i in range(rigid_body_count):
+        rigid_body = RigidBody.unpack(data, major, minor)
+        rigid_bodies.append(rigid_body)
+    return rigid_bodies
 
 
 @dataclass
@@ -125,20 +125,14 @@ class Skeleton:
         return skeleton
 
 
-@dataclass
-class SkeletonData:
-    skeletons: List[Skeleton] = field(default_factory=list)
-
-    @classmethod
-    def unpack(cls, data: Buffer, major: int, minor: int) -> 'SkeletonData':
-        skeleton_data = cls()
-        skeleton_count = 0
-        if (major == 2 and minor > 0) or major > 2:
-            skeleton_count = data.read_int()
-            for _ in range(skeleton_count):
-                skeleton = Skeleton.unpack(data, major, minor)
-                skeleton_data.skeletons.append(skeleton)
-        return skeleton_data
+def unpack_skeletons(data: Buffer, major: int, minor: int) -> List[Skeleton]:
+    skeletons: List[Skeleton] = []
+    if (major == 2 and minor > 0) or major > 2:
+        skeleton_count = data.read_int()
+        for _ in range(skeleton_count):
+            skeleton = Skeleton.unpack(data, major, minor)
+            skeletons.append(skeleton)
+    return skeletons
 
 
 @dataclass
@@ -163,34 +157,28 @@ class LabeledMarker:
         return occluded, point_cloud_solved, model_solved
 
 
-@dataclass
-class LabeledMarkerData:
-    labeled_markers: List[LabeledMarker] = field(default_factory=list)
-
-    @classmethod
-    def unpack(cls, data: Buffer, major: int,
-               minor: int) -> 'LabeledMarkerData':
-        labeled_marker_data = cls()
-        # Labeled markers (Version 2.3 and later)
-        labeled_marker_count = 0
-        if (major == 2 and minor > 3) or major > 2:
-            labeled_marker_count = data.read_int()
-            for _ in range(labeled_marker_count):
-                tmp_id = data.read_int()
-                pos = data.read_vector()
-                size = data.read_float()
-                # Version 2.6 and later
-                param = 0
-                if (major == 2 and minor >= 6) or major > 2:
-                    param = data.read_short()
-                # Version 3.0 and later
-                residual = 0.0
-                if major >= 3:
-                    residual = data.read_float()
-                labeled_marker = LabeledMarker(tmp_id, pos, size, param,
-                                               residual)
-                labeled_marker_data.labeled_markers.append(labeled_marker)
-        return labeled_marker_data
+def unpack_labeled_markers(data: Buffer, major: int, minor: int) -> List[LabeledMarker]:
+    labeled_markers: List[LabeledMarker] = []
+    # Labeled markers (Version 2.3 and later)
+    labeled_marker_count = 0
+    if (major == 2 and minor > 3) or major > 2:
+        labeled_marker_count = data.read_int()
+        for _ in range(labeled_marker_count):
+            tmp_id = data.read_int()
+            pos = data.read_vector()
+            size = data.read_float()
+            # Version 2.6 and later
+            param = 0
+            if (major == 2 and minor >= 6) or major > 2:
+                param = data.read_short()
+            # Version 3.0 and later
+            residual = 0.0
+            if major >= 3:
+                residual = data.read_float()
+            labeled_marker = LabeledMarker(tmp_id, pos, size, param,
+                                           residual)
+            labeled_markers.append(labeled_marker)
+    return labeled_markers
 
 
 @dataclass
@@ -204,29 +192,24 @@ class ForcePlate:
     channel_data: List[ForcePlateChannelData] = field(default_factory=list)
 
 
-@dataclass
-class ForcePlateData:
-    force_plates: List[ForcePlate] = field(default_factory=list)
-
-    @classmethod
-    def unpack(cls, data: Buffer, major: int, minor: int) -> 'ForcePlateData':
-        force_plate_data = cls()
-        # Force Plate data (version 2.9 and later)
-        force_plate_count = 0
-        if (major == 2 and minor >= 9) or major > 2:
-            force_plate_count = data.read_int()
-            for i in range(force_plate_count):
-                force_plate_id = data.read_int()
-                force_plate = ForcePlate(force_plate_id)
-                force_plate_channel_count = data.read_int()
-                for j in range(force_plate_channel_count):
-                    fp_channel_data = ForcePlateChannelData()
-                    force_plate_channel_frame_count = data.read_int()
-                    for k in range(force_plate_channel_frame_count):
-                        fp_channel_data.frame_list.append(data.read_float())
-                    force_plate.channel_data.append(fp_channel_data)
-                force_plate_data.force_plates.append(force_plate)
-        return force_plate_data
+def unpack_force_plates(data: Buffer, major: int, minor: int) -> List[ForcePlate]:
+    force_plates: List[ForcePlate] = []
+    # Force Plate data (version 2.9 and later)
+    force_plate_count = 0
+    if (major == 2 and minor >= 9) or major > 2:
+        force_plate_count = data.read_int()
+        for i in range(force_plate_count):
+            force_plate_id = data.read_int()
+            force_plate = ForcePlate(force_plate_id)
+            force_plate_channel_count = data.read_int()
+            for j in range(force_plate_channel_count):
+                fp_channel_data = ForcePlateChannelData()
+                force_plate_channel_frame_count = data.read_int()
+                for k in range(force_plate_channel_frame_count):
+                    fp_channel_data.frame_list.append(data.read_float())
+                force_plate.channel_data.append(fp_channel_data)
+            force_plates.append(force_plate)
+    return force_plates
 
 
 @dataclass
@@ -240,30 +223,25 @@ class Device:
     channel_data: List[DeviceChannelData] = field(default_factory=list)
 
 
-@dataclass
-class DeviceData:
-    devices: List[Device] = field(default_factory=list)
-
-    @classmethod
-    def unpack(cls, data: Buffer, major: int, minor: int) -> 'DeviceData':
-        device_data = cls()
-        # Device data (version 2.11 and later)
-        device_count = 0
-        if (major == 2 and minor >= 11) or major > 2:
-            device_count = data.read_int()
-            for i in range(device_count):
-                device = Device(data.read_int())
-                device_channel_count = data.read_int()
-                for j in range(device_channel_count):
-                    device_channel_data = DeviceChannelData()
-                    device_channel_frame_count = data.read_int()
-                    for k in range(device_channel_frame_count):
-                        device_channel_val = data.read_float()
-                        device_channel_data.frame_list.append(
-                            device_channel_val)
-                    device.channel_data.append(device_channel_data)
-                device_data.devices.append(device)
-        return device_data
+def unpack_devices(data: Buffer, major: int, minor: int) -> List[Device]:
+    devices: List[Device] = []
+    # Device data (version 2.11 and later)
+    device_count = 0
+    if (major == 2 and minor >= 11) or major > 2:
+        device_count = data.read_int()
+        for i in range(device_count):
+            device = Device(data.read_int())
+            device_channel_count = data.read_int()
+            for j in range(device_channel_count):
+                device_channel_data = DeviceChannelData()
+                device_channel_frame_count = data.read_int()
+                for k in range(device_channel_frame_count):
+                    device_channel_val = data.read_float()
+                    device_channel_data.frame_list.append(
+                        device_channel_val)
+                device.channel_data.append(device_channel_data)
+            devices.append(device)
+    return devices
 
 
 @dataclass
@@ -304,40 +282,55 @@ class FrameSuffixData:
 
 @dataclass
 class MoCapData:
-    prefix_data: Optional[FramePrefixData] = None
-    marker_set_data: Optional[MarkerSetData] = None
-    rigid_body_data: Optional[RigidBodyData] = None
-    skeleton_data: Optional[SkeletonData] = None
-    labeled_marker_data: Optional[LabeledMarkerData] = None
-    force_plate_data: Optional[ForcePlateData] = None
-    device_data: Optional[DeviceData] = None
+    frame_number: int = -1
+    marker_sets: List[MarkerSet] = field(default_factory=list)
+    unlabeled_markers: MarkerSet = field(default_factory=MarkerSet)
+    rigid_bodies: List[RigidBody] = field(default_factory=list)
+    skeletons: List[Skeleton] = field(default_factory=list)
+    labeled_markers: List[LabeledMarker] = field(default_factory=list)
+    force_plates: List[ForcePlate] = field(default_factory=list)
+    devices: List[Device] = field(default_factory=list)
     suffix_data: Optional[FrameSuffixData] = None
 
     @classmethod
     def unpack(cls, data: Buffer, major: int, minor: int) -> 'MoCapData':
         mocap_data = cls()
-        mocap_data.prefix_data = FramePrefixData.unpack(data)
-        mocap_data.marker_set_data = MarkerSetData.unpack(data)
-        mocap_data.rigid_body_data = RigidBodyData.unpack(data, major, minor)
-        mocap_data.skeleton_data = SkeletonData.unpack(data, major, minor)
-        mocap_data.labeled_marker_data = LabeledMarkerData.unpack(
-            data, major, minor)
-        mocap_data.force_plate_data = ForcePlateData.unpack(data, major, minor)
-        mocap_data.device_data = DeviceData.unpack(data, major, minor)
+        mocap_data.frame_number = FramePrefixData.unpack(data).frame_number
+        msd = MarkerSetData.unpack(data)
+        mocap_data.marker_sets = msd.marker_sets
+        mocap_data.unlabeled_markers = msd.unlabeled_markers
+        mocap_data.rigid_bodies = unpack_rigid_bodies(data, major, minor)
+        mocap_data.skeletons = unpack_skeletons(data, major, minor)
+        mocap_data.labeled_markers = unpack_labeled_markers(data, major, minor)
+        mocap_data.force_plates = unpack_force_plates(data, major, minor)
+        mocap_data.devices = unpack_devices(data, major, minor)
         mocap_data.suffix_data = FrameSuffixData.unpack(data, major, minor)
+        _ = data.read_int()
         return mocap_data
 
 
 @dataclass
 class Response:
-    response: str
+    data: bytes
 
     @classmethod
     def unpack(cls, data: Buffer, packet_size: int, major: int,
                minor: int) -> 'Response':
-        if packet_size == 4:
-            return cls(str(data.read_int()))
-        return cls(data.read_string())
+        # if packet_size == 4:
+        #     return cls(str(data.read_int()))
+        return cls(data.read_bytes(packet_size))
+
+
+@dataclass
+class EchoResponse:
+
+    request_stamp: int
+    received_stamp: int
+
+    @classmethod
+    def unpack(cls, data: Buffer, packet_size: int, major: int,
+               minor: int) -> 'EchoResponse':
+        return cls(data.read_ulong(), data.read_ulong())
 
 
 @dataclass
@@ -360,7 +353,7 @@ class MarkerSetDescription:
 class RBMarker:
     name: str = ""
     active_label: int = 0
-    position: Vector3 = np.zeros(3)
+    position: Vector3 = field(default_factory=lambda: np.zeros(3))
 
 
 @dataclass
@@ -368,7 +361,7 @@ class RigidBodyDescription:
     name: str = ""
     new_id: int = 0
     parent_id: int = 0
-    position: Vector3 = np.zeros(3)
+    position: Vector3 = field(default_factory=lambda: np.zeros(3))
     rb_markers: List[RBMarker] = field(default_factory=list)
 
     @classmethod
@@ -419,9 +412,9 @@ class ForcePlateDescription:
     serial_number: str = ""
     width: float = 0
     length: float = 0
-    position: Vector3 = np.zeros(3)
-    cal_matrix: npt.NDArray[np.float64] = np.zeros((12, 12))
-    corners: npt.NDArray[np.float64] = np.zeros((3, 4))
+    position: Vector3 = field(default_factory=lambda: np.zeros(3))
+    cal_matrix: npt.NDArray[np.float64] = field(default_factory=lambda: np.zeros((12, 12)))
+    corners: npt.NDArray[np.float64] = field(default_factory=lambda: np.zeros((3, 4)))
     plate_type: int = 0
     channel_data_type: int = 0
     channels: List[str] = field(default_factory=list)
@@ -537,18 +530,44 @@ class DataDescriptions():
 
 
 @dataclass
+class ConnectionInfo:
+    data_port: int
+    multicast: bool
+    multicast_address: str
+
+    @classmethod
+    def unpack(cls, data: Buffer, major: int, minor: int) -> 'ConnectionInfo':
+        data_port = data.read("H", 2)[0]
+        multicast = data.read_bool()
+        multicast_address = socket.inet_ntoa(data.read_bytes(4))
+        return cls(data_port, multicast, multicast_address)
+
+
+@dataclass
 class ServerInfo:
     application_name: str
-    server_version: Tuple[int, int, int, int]
-    nat_net_stream_version_server: Tuple[int, int, int, int]
+    server_version: Version
+    nat_net_stream_version_server: Version
+    high_resolution_clock_frequency: int = -1
+    connection_info: Optional[ConnectionInfo] = None
 
     @classmethod
     def unpack(cls, data: Buffer, major: int, minor: int) -> 'ServerInfo':
         application_name = data.read_string(256)
         server_version = data.read('BBBB', 4)
         nat_net_stream_version_server = data.read('BBBB', 4)
+
+        if major >= 3:
+            high_resolution_clock_frequency = data.read("Q", 8)[0]
+            connection_info: Optional[ConnectionInfo] = ConnectionInfo.unpack(data, major, minor)
+        else:
+            high_resolution_clock_frequency = -1
+            connection_info = None
+
         return cls(application_name, server_version,
-                   nat_net_stream_version_server)
+                   nat_net_stream_version_server,
+                   high_resolution_clock_frequency,
+                   connection_info)
 
 
 # Client/server message ids
@@ -564,6 +583,10 @@ class NAT(Enum):
     MESSAGESTRING = 8
     DISCONNECT = 9
     KEEPALIVE = 10
+    DISCONNECT_BY_TIMEOUT = 11
+    ECHO_REQUEST = 12
+    ECHO_RESPONSE = 13
+    DISCOVERY = 14
     UNRECOGNIZED_REQUEST = 100
 
 
@@ -585,7 +608,7 @@ def unpack(data: Buffer, major: int, minor: int) -> Any:
     if not message_id:
         return None
     packet_size = data.read_short()
-    logging.debug(f"Unpack {message_id} ({packet_size})")
+    logging.debug(f"Unpack {message_id} ({packet_size} bytes)")
     msg: Any = None
     if message_id == NAT.FRAMEOFDATA:
         msg = MoCapData.unpack(data, major, minor)
@@ -597,18 +620,47 @@ def unpack(data: Buffer, major: int, minor: int) -> Any:
         msg = Response.unpack(data, packet_size, major, minor)
     elif message_id == NAT.MESSAGESTRING:
         msg = data.read_string()
+    elif message_id == NAT.ECHO_RESPONSE:
+        msg = EchoResponse.unpack(data, packet_size, major, minor)
+    if data.remaining:
+        log = logging.warning
+    else:
+        log = logging.debug
+    log(f"Unpacked {msg}, {data.remaining} bytes remaining: {data}")
     return msg
 
 
+# def request(command: NAT, msg: bytes = b"") -> bytes:
+#     packet_size = 0
+#     if command == NAT.REQUEST:
+#         packet_size = len(msg) + 1
+#     elif command == NAT.CONNECT:
+#         msg = b"Ping"
+#         packet_size = len(msg) + 1
+#     elif command == NAT.KEEPALIVE:
+#         packet_size = 0
+#         msg = b""
+#     return b"".join((struct.pack("<HH", command.value, packet_size),
+#                      msg, b"\0"))
+
+
 def request(command: NAT, msg: bytes = b"") -> bytes:
-    packet_size = 0
-    if command == NAT.REQUEST:
-        packet_size = len(msg) + 1
-    elif command == NAT.CONNECT:
-        msg = b"Ping"
-        packet_size = len(msg) + 1
-    elif command == NAT.KEEPALIVE:
-        packet_size = 0
-        msg = b""
-    return b"".join((struct.pack("<HH", command.value, packet_size),
-                     msg, b"\0"))
+    return b"".join((struct.pack("<HH", command.value, len(msg)),
+                     msg))
+
+
+def pack_version(version: Version) -> bytes:
+    return struct.pack("4B", *version)
+
+
+def connect_request(version: Version = (3, 0, 0, 0), version_1: Version = (3, 0, 0, 0)) -> bytes:
+    return request(NAT.CONNECT, b"\0" * 256 + pack_version(version) + pack_version(version_1))
+
+
+def discovery_request(version: Version = (3, 0, 0, 0), version_1: Version = (3, 0, 0, 0)) -> bytes:
+    return request(NAT.DISCOVERY, b"\0" * 256 + pack_version(version) + pack_version(version_1))
+
+
+def echo_request(timestamp: int) -> bytes:
+    data = struct.pack("<Q", timestamp)
+    return request(NAT.ECHO_REQUEST, data)

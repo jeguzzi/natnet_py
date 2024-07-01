@@ -24,6 +24,10 @@ class Buffer:
     def __repr__(self) -> str:
         return f"<Buffer {self.index} | {len(self.data)}: {self.data[self.index:self.index+8]!r}>"
 
+    @property
+    def remaining(self) -> int:
+        return len(self.data) - self.index
+
     def read_string(self, size: int = 0) -> str:
         if size > 0:
             end = self.index + size
@@ -43,14 +47,29 @@ class Buffer:
         self.index += 4
         return value
 
+    def read_bool(self) -> bool:
+        value = self.data[self.index] != 0
+        self.index += 1
+        return value
+
+    def read_bytes(self, size: int) -> bytes:
+        value = self.data[self.index: self.index + size]
+        self.index += size
+        return value
+
     def read_long(self) -> int:
         value = int.from_bytes(self.data[self.index:self.index + 8],
                                byteorder='little')
         self.index += 8
         return value
 
+    def read_ulong(self) -> int:
+        value, = struct.unpack('<Q', self.data[self.index:self.index + 8])
+        self.index += 8
+        return cast(int, value)
+
     def read_short(self) -> int:
-        value, = struct.unpack('h', self.data[self.index:self.index + 2])
+        value, = struct.unpack('<h', self.data[self.index:self.index + 2])
         self.index += 2
         return cast(int, value)
 
