@@ -50,7 +50,7 @@ class DataProtocol(asyncio.Protocol):
             self._cb(msg)
 
     def error_received(self, exc: Any) -> None:
-        self.logger.error(exc)
+        self.logger.error(f'{exc}')
 
     def connection_lost(self, exc: Any) -> None:
         self.logger.warning("Data socket closed")
@@ -121,7 +121,7 @@ class CommandProtocol(asyncio.Protocol):
                 # self._transport.sendto(self._keep_alive_msg, addr)
 
     def error_received(self, exc: Any) -> None:
-        self.logger.error(exc)
+        self.logger.error(f'{exc}')
 
     def connection_lost(self, exc: Any) -> None:
         self.logger.warning("Command socket closed")
