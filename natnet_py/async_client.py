@@ -428,7 +428,7 @@ class AsyncClient:
             return True
         return False
 
-    async def clear_subscribtions(self, timeout: float = 0.0) -> bool:
+    async def clear_subscriptions(self, timeout: float = 0.0) -> bool:
         """
         Unsubscribe (requires NatNet >= 4)
 
