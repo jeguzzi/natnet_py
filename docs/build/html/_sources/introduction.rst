@@ -21,7 +21,7 @@ For examples, using the asynchronous interface, the life cycle can be implemente
    import natnet_py
 
    client = natnet_py.AsyncClient()
-   connected = await client.connect(discovery_address=255.255.255.255)
+   connected = await client.connect(discovery_address="255.255.255.255")
    if connected:
        # read the first 10 updates
        for i in range(10):
@@ -35,7 +35,7 @@ while using synchronous interface, the equivalent program reads
    import natnet_py
 
    client = natnet_py.SyncClient()
-   connected = client.connect(discovery_address=255.255.255.255)
+   connected = client.connect(discovery_address="255.255.255.255")
    if connected:
        # read the first 10 updates
        for i in range(10):
@@ -55,7 +55,7 @@ Clients have callbacks for received data, which you can use as
 
 
    client = natnet_py.AsyncClient()
-   connected = await client.connect(discovery_address=255.255.255.255)
+   connected = await client.connect(discovery_address="255.255.255.255")
    if connected:
        client.data_callback = my_callback
        await client.run(duration=2.0)    
