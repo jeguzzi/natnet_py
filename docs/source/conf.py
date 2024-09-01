@@ -14,8 +14,10 @@ release = '0.0.1'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc', 'sphinxarg.ext']
+extensions = ['sphinx.ext.autodoc', 'sphinxarg.ext', 'sphinx.ext.autosummary']
 
+# autosummary_generate = True
+# autosummary_imported_members = True
 templates_path = ['_templates']
 exclude_patterns = []
 
@@ -25,6 +27,9 @@ exclude_patterns = []
 # html_theme = 'alabaster'
 html_theme = 'sphinx_book_theme'
 html_static_path = ['_static']
+html_theme_options = {
+  "show_toc_level": 2
+}
 
 autodoc_type_aliases = {
     'Vector3': 'Vector3',
