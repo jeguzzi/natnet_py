@@ -63,7 +63,6 @@ class CmdShell(cmd.Cmd):
         set_log_level(args.log_level)
         self.client = SyncClient(
             address=args.client, queue=args.queue, sync=not args.no_sync)
-        print(self.client._loop)
         if args.discovery or args.server:
             self.client.connect(
                 discovery_address=args.discovery, server_address=args.server)

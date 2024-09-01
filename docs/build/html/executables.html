@@ -321,8 +321,14 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gui">GUI</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dump">Dump</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.natnet_dump-parser-positional-arguments">Positional Arguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.natnet_dump-parser-named-arguments">Named Arguments</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gui">GUI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
 </ul>
 </li>
 </ul>
@@ -433,19 +439,107 @@ document.write(`
 
 <span class="gp gp-VirtualEnv">(natnet)</span> <span class="go">connect 127.0.0.1</span>
 
-<span class="go">[...] INFO: Connect  127.0.0.1</span>
-<span class="go">[...] INFO: Creating command socket 0.0.0.0</span>
-<span class="go">[...] INFO: Got description for rigid bodies: rb0, rb1</span>
-<span class="go">[...] INFO: Start initial clock sync 0</span>
-<span class="go">[...] INFO: Initial clock sync done: min_rtt 251000 ns, beta 0.0, delta ...</span>
-<span class="go">[...] INFO: NatNet client connected to 127.0.0.1:1510</span>
-<span class="go">[...] INFO: Creating data unicast socket on 0.0.0.0:1511</span>
+<span class="go">[...] INFO: Opening command socket on 0.0.0.0</span>
+<span class="go">[...] INFO: Connecting to 127.0.0.1 ...</span>
+<span class="go">[...] INFO: Connected to server 127.0.0.1:1510</span>
+<span class="go">[...] INFO: Performing initial clock sync 0 ...</span>
+<span class="go">[...] INFO: Initial clock sync done: min_rtt 245000 ns, beta 0.0, delta 1725205710334906000</span>
+<span class="go">[...] INFO: Opening data unicast socket on 0.0.0.0:1511</span>
 
 <span class="gp gp-VirtualEnv">(natnet)</span> <span class="go">quit</span>
 
-<span class="go">[...] INFO: Data socket closed</span>
-<span class="go">[...] INFO: Command socket closed</span>
+<span class="go">[...] INFO: Closing client ...</span>
+<span class="go">[...] WARNING: Data socket closed</span>
+<span class="go">[...] WARNING: Command socket closed</span>
 <span class="go">[...] INFO: Closed</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="dump">
+<h2>Dump<a class="headerlink" href="#dump" title="Link to this heading">#</a></h2>
+<p>Saves all rigid body data to HDF5.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">natnet_dump</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">server</span> <span class="n">SERVER</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">discovery</span> <span class="n">DISCOVERY</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">iface</span> <span class="n">IFACE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">log_level</span> <span class="n">LOG_LEVEL</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">duration</span> <span class="n">DURATION</span><span class="p">]</span> <span class="n">output</span>
+</pre></div>
+</div>
+<section id="natnet_py.natnet_dump-parser-positional-arguments">
+<h3>Positional Arguments<a class="headerlink" href="#natnet_py.natnet_dump-parser-positional-arguments" title="Link to this heading">#</a></h3>
+<dl class="option-list">
+<dt><kbd>output</kbd></dt>
+<dd><p>The HDF5 output file path</p>
+</dd>
+</dl>
+</section>
+<section id="natnet_py.natnet_dump-parser-named-arguments">
+<h3>Named Arguments<a class="headerlink" href="#natnet_py.natnet_dump-parser-named-arguments" title="Link to this heading">#</a></h3>
+<dl class="option-list">
+<dt><kbd>--server</kbd></dt>
+<dd><p>The server address to connect to.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
+</dd>
+<dt><kbd>--discovery</kbd></dt>
+<dd><p>The broadcast address to announce this client</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'255.255.255.255'</span></code></p>
+</dd>
+<dt><kbd>--iface</kbd></dt>
+<dd><p>The network interface. When provided it will fill the client and the discovery address automatically</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
+</dd>
+<dt><kbd>--log_level</kbd></dt>
+<dd><p>The log level: one of DEBUG, INFO, WARNING, ERROR</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'INFO'</span></code></p>
+</dd>
+<dt><kbd>--duration</kbd></dt>
+<dd><p>Record duration in seconds. Set to zero or negative to ignore.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+</dl>
+</section>
+<p>For each rigid_body, it creates the following datasets, containing the mocap updates:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/rigid_bodies/&lt;NAME&gt;/error</span></code>: residual error in mm</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/rigid_bodies/&lt;NAME&gt;/orientation</span></code>: orientation quaternions (x, y, z, w)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/rigid_bodies/&lt;NAME&gt;/position</span></code>: positions in mm (x, y, z)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/rigid_bodies/&lt;NAME&gt;/time</span></code>: capture time stamp in ns (time since epoch)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/rigid_bodies/&lt;NAME&gt;/tracked</span></code>: whether the rigid body is tracked (bool)</p></li>
+</ul>
+<p>If a duration is not provided, stop the data collection by killing the process.</p>
+<section id="id2">
+<h3>Example<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>natnet_dump<span class="w"> </span>my_file.h5<span class="w"> </span>--duration<span class="w"> </span><span class="m">10</span>
+
+<span class="go">[...] INFO: Opening command socket on 0.0.0.0</span>
+<span class="go">[...] INFO: Discovering servers (number=1)</span>
+<span class="go">[...] INFO: Discovered 1 servers</span>
+<span class="go">[...] INFO: Connected to server 192.168.1.109:1510</span>
+<span class="go">[...] INFO: Performing initial clock sync 0 ...</span>
+<span class="go">[...] INFO: Initial clock sync done: min_rtt 137000 ns, beta 0.0, delta 1725205710334936500</span>
+<span class="go">[...] INFO: Opening data unicast socket on 0.0.0.0:1511</span>
+<span class="go">[...] INFO: Collecting data ...</span>
+<span class="go">[...] INFO: Closing client ...</span>
+<span class="go">[...] WARNING: Data socket closed</span>
+<span class="go">[...] WARNING: Command socket closed</span>
+<span class="go">[...] INFO: Closed</span>
+<span class="go">[...] INFO: Collected data</span>
+<span class="go">[...] INFO: Saving data to my_file.h5 ...</span>
+<span class="go">[...] INFO: Saved data</span>
+
+
+<span class="gp">$ </span>h5ls<span class="w"> </span>-r<span class="w"> </span>my_file.h5
+<span class="go">/                             Group</span>
+<span class="go">/rigid_bodies                 Group</span>
+<span class="go">/rigid_bodies/rb0             Group</span>
+<span class="go">/rigid_bodies/rb0/error       Dataset {32}</span>
+<span class="go">/rigid_bodies/rb0/orientation Dataset {32, 4}</span>
+<span class="go">/rigid_bodies/rb0/position    Dataset {32, 3}</span>
+<span class="go">/rigid_bodies/rb0/time        Dataset {32}</span>
+<span class="go">/rigid_bodies/rb0/tracked     Dataset {32}</span>
+<span class="go">/rigid_bodies/rb1             Group</span>
+<span class="go">/rigid_bodies/rb1/error       Dataset {32}</span>
+<span class="go">/rigid_bodies/rb1/orientation Dataset {32, 4}</span>
+<span class="go">/rigid_bodies/rb1/position    Dataset {32, 3}</span>
+<span class="go">/rigid_bodies/rb1/time        Dataset {32}</span>
+<span class="go">/rigid_bodies/rb1/tracked     Dataset {32}</span>
 </pre></div>
 </div>
 </section>
@@ -458,8 +552,8 @@ document.write(`
 </div>
 <p>It will open a web-browser where it draws rigid bodies on a map
 and display their poses in a table.</p>
-<section id="id2">
-<h3>Example<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h3>Example<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>natnet_gui
 </pre></div>
 </div>
@@ -523,8 +617,14 @@ and display their poses in a table.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gui">GUI</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dump">Dump</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.natnet_dump-parser-positional-arguments">Positional Arguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.natnet_dump-parser-named-arguments">Named Arguments</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gui">GUI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
 </ul>
 </li>
 </ul>

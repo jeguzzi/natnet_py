@@ -1,5 +1,4 @@
-﻿import logging
-import asyncio
+﻿import asyncio
 from typing import Any
 
 from natnet_py import AsyncClient
@@ -14,12 +13,10 @@ async def run(args: Any = None) -> None:
         queue=10,
         sync=not args.no_sync
     )
-    logging.info("Connecting NatNet server ...")
     connected = await client.connect(
         timeout=5.0, server_address=args.server,
         discovery_address=args.discovery)
     if connected:
-        logging.info("Connected NatNet server")
         if not args.silent:
             cb = data_callback(client)
             for i in range(10):
@@ -28,11 +25,7 @@ async def run(args: Any = None) -> None:
                     cb(*data)
                 else:
                     break
-    else:
-        logging.warning("Failed connecting NatNet server")
-    logging.info("Unconnecting NatNet server ...")
     await client.unconnect()
-    logging.info("Unconnected NatNet server")
     await client.close()
 
 

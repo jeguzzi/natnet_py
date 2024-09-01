@@ -26,6 +26,7 @@ setup(
             'natnet_cli = natnet_py.natnet_cli:main',
             'natnet_discover = natnet_py.natnet_discover:main',
             'natnet_gui = natnet_py.natnet_gui:main',
+            'natnet_dump = natnet_py.natnet_dump:main',
         ],
     },
 )

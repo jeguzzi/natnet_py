@@ -47,7 +47,6 @@ class SynchronizedClock:
         self._now_ns = now
 
     async def init(self) -> None:
-        self.logger.debug("Init clock")
         await self._start()
         self._task = asyncio.create_task(self._run())
 
@@ -57,10 +56,9 @@ class SynchronizedClock:
             self._task = None
 
     async def _start(self) -> None:
-        self.logger.info(f"Start initial clock sync {self.count}")
+        self.logger.info(f"Performing initial clock sync {self.count} ...")
         while self.count < 10:
             await self.echo()
-            self.logger.info(f"{self.count}")
         self.logger.info(
             f"Initial clock sync done: min_rtt {self._min_rtt} ns, beta {self._beta}, delta {self._t2_c - self._t2_s}"
         )
@@ -76,7 +74,7 @@ class SynchronizedClock:
 
     async def echo(self) -> None:
         self._t0_c = self._now_ns()
-        self.logger.info(f"<- Echo {self.count}: client time {self._t0_c}")
+        self.logger.debug(f"<- Echo {self.count}: client time {self._t0_c}")
         response = await self._cmd.send_echo(self._t0_c, timeout=0.5)
         t2_c = self._now_ns()
         if not response:

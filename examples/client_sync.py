@@ -13,12 +13,10 @@ def main(args: Any = None) -> None:
         queue=10,
         sync=not args.no_sync
     )
-    logging.info("Connecting NatNet server ...")
     connected = client.connect(
         timeout=5.0, server_address=args.server,
         discovery_address=args.discovery)
     if connected:
-        logging.info("Connected NatNet server")
         if not args.silent:
             cb = data_callback(client)
             for i in range(10):
@@ -27,13 +25,8 @@ def main(args: Any = None) -> None:
                     cb(*data)
                 else:
                     break
-    else:
-        logging.warning("Failed connecting NatNet server")
-    logging.info("Unconnecting NatNet server ...")
     client.unconnect()
-    logging.info("Unconnected NatNet server")
     client.close()
-    client.join()
 
 
 if __name__ == "__main__":
