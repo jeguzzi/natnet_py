@@ -14,7 +14,11 @@ release = '0.0.1'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc', 'sphinxarg.ext', 'sphinx.ext.autosummary']
+extensions = [
+  'sphinx_copybutton',
+  'sphinx.ext.autodoc',
+  'sphinxarg.ext',
+  'sphinx.ext.autosummary']
 
 # autosummary_generate = True
 # autosummary_imported_members = True
