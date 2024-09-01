@@ -1,0 +1,632 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>natnet_py.AsyncClient &#8212; natnet_py 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=e645c8fa"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/test/natnet_py.AsyncClient';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">natnet_py 0.0.1 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../first_steps.html">First steps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_it_works.html">How it works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../executables.html">Executables</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../async_client.html">Asynchronous (asyncio) Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sync_client.html">Synchronous (Blocking) Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server.html">Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../internal.html">Internal API</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/reference/test/natnet_py.AsyncClient.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>natnet_py.AsyncClient</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.AsyncClient"><code class="docutils literal notranslate"><span class="pre">AsyncClient</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.AsyncClient.__init__"><code class="docutils literal notranslate"><span class="pre">AsyncClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">AsyncClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.AsyncClient.__new__"><code class="docutils literal notranslate"><span class="pre">AsyncClient.__new__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="natnet-py-asyncclient">
+<h1>natnet_py.AsyncClient<a class="headerlink" href="#natnet-py-asyncclient" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.AsyncClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.</span></span><span class="sig-name descname"><span class="pre">AsyncClient</span></span><a class="headerlink" href="#natnet_py.AsyncClient" title="Link to this definition">#</a></dt>
+<dd><p>This class describes a Natnet client.</p>
+<p>Usage:</p>
+<ol class="arabic">
+<li><p>Create the client</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">AsyncClient</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Discover a server</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">servers</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">discover</span><span class="p">(</span><span class="n">broadcast_address</span><span class="o">=</span><span class="mf">255.255.255.255</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>and/or connect to a server directly</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">server_address</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<ol class="arabic" start="3">
+<li><p>Read data</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>or add a callback</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">data_callback</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">time_ns</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">time_ns</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>and/or wait for some time or until disconnection</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mf">60.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>close the connection</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">unconnect</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>close the client</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<dl class="py method">
+<dt class="sig sig-object py" id="natnet_py.AsyncClient.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'0.0.0.0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command_port:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1510</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger:</span> <span class="pre">~logging.Logger</span> <span class="pre">=</span> <span class="pre">&lt;RootLogger</span> <span class="pre">root</span> <span class="pre">(WARNING)&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">now:</span> <span class="pre">~typing.Callable[[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int]</span> <span class="pre">=</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">time_ns&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#natnet_py.AsyncClient.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Construct an instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>address</strong> – The IP4 address of the client.
+Leave to <code class="docutils literal notranslate"><span class="pre">&quot;0.0.0.0&quot;</span></code> to bind to all interfaces.</p></li>
+<li><p><strong>command_port</strong> – The port to send commands to.</p></li>
+<li><p><strong>queue</strong> – length of the incoming mocap messages queue</p></li>
+<li><p><strong>logger</strong> – the logger to use</p></li>
+<li><p><strong>now</strong> – a function used to stamp incoming messages</p></li>
+<li><p><strong>sync</strong> – whether to sync the client and server clocks upon connection</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#id0" title="natnet_py.AsyncClient.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([address, command_port, queue, ...])</p></td>
+<td><p>Construct an instance</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.clear_subscriptions" title="natnet_py.AsyncClient.clear_subscriptions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_subscriptions</span></code></a>([timeout])</p></td>
+<td><p>Unsubscribe (requires NatNet &gt;= 4)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.close" title="natnet_py.AsyncClient.close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">close</span></code></a>()</p></td>
+<td><p>Closes the client connections.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.connect" title="natnet_py.AsyncClient.connect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">connect</span></code></a>([discovery_address, server_address, ...])</p></td>
+<td><p>Connect to a server.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.disable_asset" title="natnet_py.AsyncClient.disable_asset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">disable_asset</span></code></a>(name[, timeout])</p></td>
+<td><p>Disables the asset.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.discover" title="natnet_py.AsyncClient.discover"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discover</span></code></a>(broadcast_address[, number, timeout])</p></td>
+<td><p>Discover Motive Natnet servers</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.enable_asset" title="natnet_py.AsyncClient.enable_asset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enable_asset</span></code></a>(name[, timeout])</p></td>
+<td><p>Enables the asset.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.get_data" title="natnet_py.AsyncClient.get_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_data</span></code></a>([timeout, last])</p></td>
+<td><p>Gets mocap data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.get_framerate" title="natnet_py.AsyncClient.get_framerate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_framerate</span></code></a>()</p></td>
+<td><p>Gets the framerate.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_property</span></code>(name, kind[, node, timeout])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">init</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">send_request</span></code>(data[, timeout])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.server_ticks_to_client_ns_time" title="natnet_py.AsyncClient.server_ticks_to_client_ns_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">server_ticks_to_client_ns_time</span></code></a>(ticks)</p></td>
+<td><p>Convert a server ticks to a time synchronized with the client clock</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.set_framerate" title="natnet_py.AsyncClient.set_framerate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_framerate</span></code></a>(rate[, timeout])</p></td>
+<td><p>Sets the framerate.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_property</span></code>(name, value[, node, timeout])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.set_version" title="natnet_py.AsyncClient.set_version"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_version</span></code></a>(major, minor)</p></td>
+<td><p>Sets the protocol version.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.start_listening_for_data" title="natnet_py.AsyncClient.start_listening_for_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_listening_for_data</span></code></a>([timeout])</p></td>
+<td><p>Starts a listening for data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.subscribe" title="natnet_py.AsyncClient.subscribe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">subscribe</span></code></a>([kind, name, id, timeout])</p></td>
+<td><p>Subscribe (requires NatNet &gt;= 4)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.subscribe_all" title="natnet_py.AsyncClient.subscribe_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">subscribe_all</span></code></a>([timeout])</p></td>
+<td><p>Subscribe (requires NatNet &gt;= 4) to all rigid bodies</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.unconnect" title="natnet_py.AsyncClient.unconnect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unconnect</span></code></a>()</p></td>
+<td><p>Unconnect the currently connected server</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.unsubscribe" title="natnet_py.AsyncClient.unsubscribe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unsubscribe</span></code></a>([name, id, timeout])</p></td>
+<td><p>Unsubscribe (requires NatNet &gt;= 4) from a rigid body updates</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.update_description" title="natnet_py.AsyncClient.update_description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_description</span></code></a>([timeout])</p></td>
+<td><p>Require a new description from the connected server</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.wait" title="natnet_py.AsyncClient.wait"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wait</span></code></a>(duration)</p></td>
+<td><p>Wait a given duration or until the client has disconnected.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">wait_until_lost_connection</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Attributes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.can_change_bitstream_version" title="natnet_py.AsyncClient.can_change_bitstream_version"><code class="xref py py-obj docutils literal notranslate"><span class="pre">can_change_bitstream_version</span></code></a></p></td>
+<td><p>Whether the client may ask to change natnet protocol version.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.can_subscribe" title="natnet_py.AsyncClient.can_subscribe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">can_subscribe</span></code></a></p></td>
+<td><p>Determines ability to subscribe (which requires NatNet &gt;= 4).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.connected" title="natnet_py.AsyncClient.connected"><code class="xref py py-obj docutils literal notranslate"><span class="pre">connected</span></code></a></p></td>
+<td><p>Whether a NatNet server is connected.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_callback</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.data_port" title="natnet_py.AsyncClient.data_port"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_port</span></code></a></p></td>
+<td><p>The configured data port</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.description" title="natnet_py.AsyncClient.description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">description</span></code></a></p></td>
+<td><p>The connected mocap description</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.multicast_address" title="natnet_py.AsyncClient.multicast_address"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multicast_address</span></code></a></p></td>
+<td><p>The server IP4 multicast address</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rigid_body_names</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.server_address" title="natnet_py.AsyncClient.server_address"><code class="xref py py-obj docutils literal notranslate"><span class="pre">server_address</span></code></a></p></td>
+<td><p>The IP4 address and port of the connected server</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.server_info" title="natnet_py.AsyncClient.server_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">server_info</span></code></a></p></td>
+<td><p>The connected server</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../async_client.html#natnet_py.AsyncClient.use_multicast" title="natnet_py.AsyncClient.use_multicast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_multicast</span></code></a></p></td>
+<td><p>Whether the server is using multicasting to stream data</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'0.0.0.0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command_port:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1510</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger:</span> <span class="pre">~logging.Logger</span> <span class="pre">=</span> <span class="pre">&lt;RootLogger</span> <span class="pre">root</span> <span class="pre">(WARNING)&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">now:</span> <span class="pre">~typing.Callable[[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int]</span> <span class="pre">=</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">time_ns&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition">#</a></dt>
+<dd><p>Construct an instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>address</strong> – The IP4 address of the client.
+Leave to <code class="docutils literal notranslate"><span class="pre">&quot;0.0.0.0&quot;</span></code> to bind to all interfaces.</p></li>
+<li><p><strong>command_port</strong> – The port to send commands to.</p></li>
+<li><p><strong>queue</strong> – length of the incoming mocap messages queue</p></li>
+<li><p><strong>logger</strong> – the logger to use</p></li>
+<li><p><strong>now</strong> – a function used to stamp incoming messages</p></li>
+<li><p><strong>sync</strong> – whether to sync the client and server clocks upon connection</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="natnet_py.AsyncClient.__new__">
+<span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#natnet_py.AsyncClient.__new__" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.AsyncClient"><code class="docutils literal notranslate"><span class="pre">AsyncClient</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.AsyncClient.__init__"><code class="docutils literal notranslate"><span class="pre">AsyncClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">AsyncClient.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.AsyncClient.__new__"><code class="docutils literal notranslate"><span class="pre">AsyncClient.__new__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jerome Guzzi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Jerome Guzzi.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
