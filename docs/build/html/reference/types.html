@@ -1,0 +1,1350 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Types &#8212; natnet_py 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=e645c8fa"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/types';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Asynchronous (asyncio) Client" href="async_client.html" />
+    <link rel="prev" title="API Reference" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">natnet_py 0.0.1 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first_steps.html">First steps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_it_works.html">How it works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../executables.html">Executables</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="async_client.html">Asynchronous (asyncio) Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sync_client.html">Synchronous (Blocking) Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internal.html">Internal API</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/reference/types.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Types</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Quaternion"><code class="docutils literal notranslate"><span class="pre">Quaternion</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Matrix12x12"><code class="docutils literal notranslate"><span class="pre">Matrix12x12</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Matrix3x4"><code class="docutils literal notranslate"><span class="pre">Matrix3x4</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mocap-description">MoCap Description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapDescription"><code class="docutils literal notranslate"><span class="pre">MoCapDescription</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapDescription.cameras"><code class="docutils literal notranslate"><span class="pre">MoCapDescription.cameras</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapDescription.devices"><code class="docutils literal notranslate"><span class="pre">MoCapDescription.devices</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapDescription.force_plates"><code class="docutils literal notranslate"><span class="pre">MoCapDescription.force_plates</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapDescription.marker_sets"><code class="docutils literal notranslate"><span class="pre">MoCapDescription.marker_sets</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapDescription.rigid_bodies"><code class="docutils literal notranslate"><span class="pre">MoCapDescription.rigid_bodies</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapDescription.skeletons"><code class="docutils literal notranslate"><span class="pre">MoCapDescription.skeletons</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.CameraDescription"><code class="docutils literal notranslate"><span class="pre">CameraDescription</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.CameraDescription.name"><code class="docutils literal notranslate"><span class="pre">CameraDescription.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.CameraDescription.orientation"><code class="docutils literal notranslate"><span class="pre">CameraDescription.orientation</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.CameraDescription.position"><code class="docutils literal notranslate"><span class="pre">CameraDescription.position</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceDescription"><code class="docutils literal notranslate"><span class="pre">DeviceDescription</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceDescription.channel_data_type"><code class="docutils literal notranslate"><span class="pre">DeviceDescription.channel_data_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceDescription.channels"><code class="docutils literal notranslate"><span class="pre">DeviceDescription.channels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceDescription.device_type"><code class="docutils literal notranslate"><span class="pre">DeviceDescription.device_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceDescription.id"><code class="docutils literal notranslate"><span class="pre">DeviceDescription.id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceDescription.name"><code class="docutils literal notranslate"><span class="pre">DeviceDescription.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceDescription.serial_number"><code class="docutils literal notranslate"><span class="pre">DeviceDescription.serial_number</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.cal_matrix"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.cal_matrix</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.channel_data_type"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.channel_data_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.channels"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.channels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.corners"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.corners</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.id"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.length"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.length</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.plate_type"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.plate_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.position"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.position</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.serial_number"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.serial_number</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.width"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.width</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkerSetDescription"><code class="docutils literal notranslate"><span class="pre">MarkerSetDescription</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkerSetDescription.markers"><code class="docutils literal notranslate"><span class="pre">MarkerSetDescription.markers</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkerSetDescription.name"><code class="docutils literal notranslate"><span class="pre">MarkerSetDescription.name</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyDescription"><code class="docutils literal notranslate"><span class="pre">RigidBodyDescription</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyDescription.id"><code class="docutils literal notranslate"><span class="pre">RigidBodyDescription.id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyDescription.markers"><code class="docutils literal notranslate"><span class="pre">RigidBodyDescription.markers</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyDescription.name"><code class="docutils literal notranslate"><span class="pre">RigidBodyDescription.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyDescription.parent_id"><code class="docutils literal notranslate"><span class="pre">RigidBodyDescription.parent_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyDescription.position"><code class="docutils literal notranslate"><span class="pre">RigidBodyDescription.position</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.SkeletonDescription"><code class="docutils literal notranslate"><span class="pre">SkeletonDescription</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.SkeletonDescription.id"><code class="docutils literal notranslate"><span class="pre">SkeletonDescription.id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.SkeletonDescription.name"><code class="docutils literal notranslate"><span class="pre">SkeletonDescription.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.SkeletonDescription.rigid_bodies"><code class="docutils literal notranslate"><span class="pre">SkeletonDescription.rigid_bodies</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RBMarker"><code class="docutils literal notranslate"><span class="pre">RBMarker</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RBMarker.active_label"><code class="docutils literal notranslate"><span class="pre">RBMarker.active_label</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RBMarker.name"><code class="docutils literal notranslate"><span class="pre">RBMarker.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RBMarker.position"><code class="docutils literal notranslate"><span class="pre">RBMarker.position</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mocap-data">MoCap Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData"><code class="docutils literal notranslate"><span class="pre">MoCapData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.devices"><code class="docutils literal notranslate"><span class="pre">MoCapData.devices</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.force_plates"><code class="docutils literal notranslate"><span class="pre">MoCapData.force_plates</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.frame_number"><code class="docutils literal notranslate"><span class="pre">MoCapData.frame_number</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.labeled_markers"><code class="docutils literal notranslate"><span class="pre">MoCapData.labeled_markers</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.marker_sets"><code class="docutils literal notranslate"><span class="pre">MoCapData.marker_sets</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.rigid_bodies"><code class="docutils literal notranslate"><span class="pre">MoCapData.rigid_bodies</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.skeletons"><code class="docutils literal notranslate"><span class="pre">MoCapData.skeletons</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.suffix_data"><code class="docutils literal notranslate"><span class="pre">MoCapData.suffix_data</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.unlabeled_markers_positions"><code class="docutils literal notranslate"><span class="pre">MoCapData.unlabeled_markers_positions</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkerSetData"><code class="docutils literal notranslate"><span class="pre">MarkerSetData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkerSetData.name"><code class="docutils literal notranslate"><span class="pre">MarkerSetData.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkerSetData.positions"><code class="docutils literal notranslate"><span class="pre">MarkerSetData.positions</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkersData"><code class="docutils literal notranslate"><span class="pre">MarkersData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkersData.marker_sets"><code class="docutils literal notranslate"><span class="pre">MarkersData.marker_sets</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkersData.unlabeled_markers_positions"><code class="docutils literal notranslate"><span class="pre">MarkersData.unlabeled_markers_positions</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData.decoded_marker_id"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData.decoded_marker_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData.decoded_param"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData.decoded_param</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData.id"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData.id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData.param"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData.param</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData.position"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData.position</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData.residual"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData.residual</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData.size"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData.size</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyData"><code class="docutils literal notranslate"><span class="pre">RigidBodyData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyData.error"><code class="docutils literal notranslate"><span class="pre">RigidBodyData.error</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyData.id"><code class="docutils literal notranslate"><span class="pre">RigidBodyData.id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyData.markers"><code class="docutils literal notranslate"><span class="pre">RigidBodyData.markers</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyData.orientation"><code class="docutils literal notranslate"><span class="pre">RigidBodyData.orientation</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyData.position"><code class="docutils literal notranslate"><span class="pre">RigidBodyData.position</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyData.tracking_valid"><code class="docutils literal notranslate"><span class="pre">RigidBodyData.tracking_valid</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.SkeletonData"><code class="docutils literal notranslate"><span class="pre">SkeletonData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.SkeletonData.id"><code class="docutils literal notranslate"><span class="pre">SkeletonData.id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.SkeletonData.rigid_bodies"><code class="docutils literal notranslate"><span class="pre">SkeletonData.rigid_bodies</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.AnalogChannelData"><code class="docutils literal notranslate"><span class="pre">AnalogChannelData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.AnalogChannelData.values"><code class="docutils literal notranslate"><span class="pre">AnalogChannelData.values</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateData"><code class="docutils literal notranslate"><span class="pre">ForcePlateData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateData.channels"><code class="docutils literal notranslate"><span class="pre">ForcePlateData.channels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateData.id"><code class="docutils literal notranslate"><span class="pre">ForcePlateData.id</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceData"><code class="docutils literal notranslate"><span class="pre">DeviceData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceData.channels"><code class="docutils literal notranslate"><span class="pre">DeviceData.channels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceData.id"><code class="docutils literal notranslate"><span class="pre">DeviceData.id</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.bitstream_version_changed"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.bitstream_version_changed</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.is_editing"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.is_editing</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.is_recording"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.is_recording</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.stamp_camera_mid_exposure"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.stamp_camera_mid_exposure</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.stamp_data_received"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.stamp_data_received</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.stamp_transmit"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.stamp_transmit</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.timecode"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.timecode</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.timecode_sub"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.timecode_sub</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.timestamp"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.timestamp</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.tracked_models_changed"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.tracked_models_changed</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="types">
+<h1>Types<a class="headerlink" href="#types" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Vector3">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Vector3</span></span><a class="headerlink" href="#Vector3" title="Link to this definition">#</a></dt>
+<dd><p>Alias of <code class="docutils literal notranslate"><span class="pre">tuple[float,</span> <span class="pre">float,</span> <span class="pre">float]</span></code> as (x, y, z) in mm.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Quaternion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Quaternion</span></span><a class="headerlink" href="#Quaternion" title="Link to this definition">#</a></dt>
+<dd><p>Alias of <code class="docutils literal notranslate"><span class="pre">tuple[float,</span> <span class="pre">float,</span> <span class="pre">float,</span> <span class="pre">float]</span></code> as (x, y, z, w)</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Matrix12x12">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Matrix12x12</span></span><a class="headerlink" href="#Matrix12x12" title="Link to this definition">#</a></dt>
+<dd><p>Alias of tuple of tuples of floats (with shape 12 x 12)</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Matrix3x4">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Matrix3x4</span></span><a class="headerlink" href="#Matrix3x4" title="Link to this definition">#</a></dt>
+<dd><p>Alias of tuple of tuples of floats (with shape 3 x 4)</p>
+</dd></dl>
+
+<section id="mocap-description">
+<h2>MoCap Description<a class="headerlink" href="#mocap-description" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapDescription">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">MoCapDescription</span></span><a class="headerlink" href="#natnet_py.protocol.MoCapDescription" title="Link to this definition">#</a></dt>
+<dd><p>Data Descriptions class</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapDescription.cameras">
+<span class="sig-name descname"><span class="pre">cameras</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.CameraDescription" title="natnet_py.protocol.CameraDescription"><span class="pre">CameraDescription</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MoCapDescription.cameras" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapDescription.devices">
+<span class="sig-name descname"><span class="pre">devices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.DeviceDescription" title="natnet_py.protocol.DeviceDescription"><span class="pre">DeviceDescription</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MoCapDescription.devices" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapDescription.force_plates">
+<span class="sig-name descname"><span class="pre">force_plates</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.ForcePlateDescription" title="natnet_py.protocol.ForcePlateDescription"><span class="pre">ForcePlateDescription</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MoCapDescription.force_plates" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapDescription.marker_sets">
+<span class="sig-name descname"><span class="pre">marker_sets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.MarkerSetDescription" title="natnet_py.protocol.MarkerSetDescription"><span class="pre">MarkerSetDescription</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MoCapDescription.marker_sets" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapDescription.rigid_bodies">
+<span class="sig-name descname"><span class="pre">rigid_bodies</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.RigidBodyDescription" title="natnet_py.protocol.RigidBodyDescription"><span class="pre">RigidBodyDescription</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MoCapDescription.rigid_bodies" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapDescription.skeletons">
+<span class="sig-name descname"><span class="pre">skeletons</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.SkeletonDescription" title="natnet_py.protocol.SkeletonDescription"><span class="pre">SkeletonDescription</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MoCapDescription.skeletons" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.CameraDescription">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">CameraDescription</span></span><a class="headerlink" href="#natnet_py.protocol.CameraDescription" title="Link to this definition">#</a></dt>
+<dd><p>A MoCap Camera</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.CameraDescription.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#natnet_py.protocol.CameraDescription.name" title="Link to this definition">#</a></dt>
+<dd><p>name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.CameraDescription.orientation">
+<span class="sig-name descname"><span class="pre">orientation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.CameraDescription.orientation" title="Link to this definition">#</a></dt>
+<dd><p>orientation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.CameraDescription.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.CameraDescription.position" title="Link to this definition">#</a></dt>
+<dd><p>position</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.DeviceDescription">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">DeviceDescription</span></span><a class="headerlink" href="#natnet_py.protocol.DeviceDescription" title="Link to this definition">#</a></dt>
+<dd><p>An external device</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.DeviceDescription.channel_data_type">
+<span class="sig-name descname"><span class="pre">channel_data_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#natnet_py.protocol.DeviceDescription.channel_data_type" title="Link to this definition">#</a></dt>
+<dd><p>channel data type code</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.DeviceDescription.channels">
+<span class="sig-name descname"><span class="pre">channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.DeviceDescription.channels" title="Link to this definition">#</a></dt>
+<dd><p>channel names</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.DeviceDescription.device_type">
+<span class="sig-name descname"><span class="pre">device_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#natnet_py.protocol.DeviceDescription.device_type" title="Link to this definition">#</a></dt>
+<dd><p>device ‘type’ code</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.DeviceDescription.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#natnet_py.protocol.DeviceDescription.id" title="Link to this definition">#</a></dt>
+<dd><p>used for order, and for identification in the data stream</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.DeviceDescription.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#natnet_py.protocol.DeviceDescription.name" title="Link to this definition">#</a></dt>
+<dd><p>device name as appears in Motive</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.DeviceDescription.serial_number">
+<span class="sig-name descname"><span class="pre">serial_number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#natnet_py.protocol.DeviceDescription.serial_number" title="Link to this definition">#</a></dt>
+<dd><p>for unique device identification</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.ForcePlateDescription">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">ForcePlateDescription</span></span><a class="headerlink" href="#natnet_py.protocol.ForcePlateDescription" title="Link to this definition">#</a></dt>
+<dd><p>A force plate</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.ForcePlateDescription.cal_matrix">
+<span class="sig-name descname"><span class="pre">cal_matrix</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#natnet_py.protocol.ForcePlateDescription.cal_matrix" title="Link to this definition">#</a></dt>
+<dd><p>force plate calibration matrix (for raw analog voltage channel type only)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.ForcePlateDescription.channel_data_type">
+<span class="sig-name descname"><span class="pre">channel_data_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#natnet_py.protocol.ForcePlateDescription.channel_data_type" title="Link to this definition">#</a></dt>
+<dd><p>0=Calibrated force data, 1=Raw analog voltages</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.ForcePlateDescription.channels">
+<span class="sig-name descname"><span class="pre">channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.ForcePlateDescription.channels" title="Link to this definition">#</a></dt>
+<dd><p>channel names</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.ForcePlateDescription.corners">
+<span class="sig-name descname"><span class="pre">corners</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#natnet_py.protocol.ForcePlateDescription.corners" title="Link to this definition">#</a></dt>
+<dd><p>plate corners, in world (aka Mocap System) coordinates, clockwise from plate +x,+y (refer to C3D spec for details)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.ForcePlateDescription.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#natnet_py.protocol.ForcePlateDescription.id" title="Link to this definition">#</a></dt>
+<dd><p>used for order, and for identification in the data stream</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.ForcePlateDescription.length">
+<span class="sig-name descname"><span class="pre">length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#natnet_py.protocol.ForcePlateDescription.length" title="Link to this definition">#</a></dt>
+<dd><p>plate physical length (manufacturer supplied)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.ForcePlateDescription.plate_type">
+<span class="sig-name descname"><span class="pre">plate_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#natnet_py.protocol.ForcePlateDescription.plate_type" title="Link to this definition">#</a></dt>
+<dd><p>force plate ‘type’ (refer to C3D spec for details)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.ForcePlateDescription.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></em><a class="headerlink" href="#natnet_py.protocol.ForcePlateDescription.position" title="Link to this definition">#</a></dt>
+<dd><p>electrical center offset (from electrical center to geometric center-top of force plate) (manufacturer supplied)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.ForcePlateDescription.serial_number">
+<span class="sig-name descname"><span class="pre">serial_number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#natnet_py.protocol.ForcePlateDescription.serial_number" title="Link to this definition">#</a></dt>
+<dd><p>for unique plate identification</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.ForcePlateDescription.width">
+<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#natnet_py.protocol.ForcePlateDescription.width" title="Link to this definition">#</a></dt>
+<dd><p>plate physical width (manufacturer supplied)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.MarkerSetDescription">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">MarkerSetDescription</span></span><a class="headerlink" href="#natnet_py.protocol.MarkerSetDescription" title="Link to this definition">#</a></dt>
+<dd><p>A set of markers</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MarkerSetDescription.markers">
+<span class="sig-name descname"><span class="pre">markers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MarkerSetDescription.markers" title="Link to this definition">#</a></dt>
+<dd><p>marker names</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MarkerSetDescription.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Not</span> <span class="pre">Set'</span></em><a class="headerlink" href="#natnet_py.protocol.MarkerSetDescription.name" title="Link to this definition">#</a></dt>
+<dd><p>name</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.RigidBodyDescription">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">RigidBodyDescription</span></span><a class="headerlink" href="#natnet_py.protocol.RigidBodyDescription" title="Link to this definition">#</a></dt>
+<dd><p>A rigid body</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.RigidBodyDescription.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#natnet_py.protocol.RigidBodyDescription.id" title="Link to this definition">#</a></dt>
+<dd><p>RigidBody identifier</p>
+<p>Streaming ID value for rigid body assets, and Bone index value for skeleton rigid bodies.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.RigidBodyDescription.markers">
+<span class="sig-name descname"><span class="pre">markers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.RBMarker" title="natnet_py.protocol.RBMarker"><span class="pre">RBMarker</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.RigidBodyDescription.markers" title="Link to this definition">#</a></dt>
+<dd><p>markers</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.RigidBodyDescription.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#natnet_py.protocol.RigidBodyDescription.name" title="Link to this definition">#</a></dt>
+<dd><p>name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.RigidBodyDescription.parent_id">
+<span class="sig-name descname"><span class="pre">parent_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#natnet_py.protocol.RigidBodyDescription.parent_id" title="Link to this definition">#</a></dt>
+<dd><p>ID of parent Rigid Body (in case hierarchy exists; otherwise -1)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.RigidBodyDescription.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></em><a class="headerlink" href="#natnet_py.protocol.RigidBodyDescription.position" title="Link to this definition">#</a></dt>
+<dd><p>offset position relative to parent</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.SkeletonDescription">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">SkeletonDescription</span></span><a class="headerlink" href="#natnet_py.protocol.SkeletonDescription" title="Link to this definition">#</a></dt>
+<dd><p>A Skeleton</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.SkeletonDescription.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#natnet_py.protocol.SkeletonDescription.id" title="Link to this definition">#</a></dt>
+<dd><p>unique identifier</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.SkeletonDescription.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#natnet_py.protocol.SkeletonDescription.name" title="Link to this definition">#</a></dt>
+<dd><p>name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.SkeletonDescription.rigid_bodies">
+<span class="sig-name descname"><span class="pre">rigid_bodies</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.RigidBodyDescription" title="natnet_py.protocol.RigidBodyDescription"><span class="pre">RigidBodyDescription</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.SkeletonDescription.rigid_bodies" title="Link to this definition">#</a></dt>
+<dd><p>rigid bodies (bones) descriptions</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.RBMarker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">RBMarker</span></span><a class="headerlink" href="#natnet_py.protocol.RBMarker" title="Link to this definition">#</a></dt>
+<dd><p>A marker that is part of a rigid body</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.RBMarker.active_label">
+<span class="sig-name descname"><span class="pre">active_label</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#natnet_py.protocol.RBMarker.active_label" title="Link to this definition">#</a></dt>
+<dd><p>active label (0 if not specified)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.RBMarker.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#natnet_py.protocol.RBMarker.name" title="Link to this definition">#</a></dt>
+<dd><p>name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.RBMarker.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></em><a class="headerlink" href="#natnet_py.protocol.RBMarker.position" title="Link to this definition">#</a></dt>
+<dd><p>marker location</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="mocap-data">
+<h2>MoCap Data<a class="headerlink" href="#mocap-data" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">MoCapData</span></span><a class="headerlink" href="#natnet_py.protocol.MoCapData" title="Link to this definition">#</a></dt>
+<dd><p>Data gathered during one Optitrack update</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapData.devices">
+<span class="sig-name descname"><span class="pre">devices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.DeviceData" title="natnet_py.protocol.DeviceData"><span class="pre">DeviceData</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MoCapData.devices" title="Link to this definition">#</a></dt>
+<dd><p>devices</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapData.force_plates">
+<span class="sig-name descname"><span class="pre">force_plates</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.ForcePlateData" title="natnet_py.protocol.ForcePlateData"><span class="pre">ForcePlateData</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MoCapData.force_plates" title="Link to this definition">#</a></dt>
+<dd><p>force plates</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapData.frame_number">
+<span class="sig-name descname"><span class="pre">frame_number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#natnet_py.protocol.MoCapData.frame_number" title="Link to this definition">#</a></dt>
+<dd><p>host defined frame number</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapData.labeled_markers">
+<span class="sig-name descname"><span class="pre">labeled_markers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.LabeledMarkerData" title="natnet_py.protocol.LabeledMarkerData"><span class="pre">LabeledMarkerData</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MoCapData.labeled_markers" title="Link to this definition">#</a></dt>
+<dd><p>labeled markers</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapData.marker_sets">
+<span class="sig-name descname"><span class="pre">marker_sets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.MarkerSetData" title="natnet_py.protocol.MarkerSetData"><span class="pre">MarkerSetData</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MoCapData.marker_sets" title="Link to this definition">#</a></dt>
+<dd><p>marker sets</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapData.rigid_bodies">
+<span class="sig-name descname"><span class="pre">rigid_bodies</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.RigidBodyData" title="natnet_py.protocol.RigidBodyData"><span class="pre">RigidBodyData</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MoCapData.rigid_bodies" title="Link to this definition">#</a></dt>
+<dd><p>rigid bodies</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapData.skeletons">
+<span class="sig-name descname"><span class="pre">skeletons</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.SkeletonData" title="natnet_py.protocol.SkeletonData"><span class="pre">SkeletonData</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MoCapData.skeletons" title="Link to this definition">#</a></dt>
+<dd><p>skeletons</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapData.suffix_data">
+<span class="sig-name descname"><span class="pre">suffix_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#natnet_py.protocol.FrameSuffixData" title="natnet_py.protocol.FrameSuffixData"><span class="pre">FrameSuffixData</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#natnet_py.protocol.MoCapData.suffix_data" title="Link to this definition">#</a></dt>
+<dd><p>frame metadata (timing, state, …)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MoCapData.unlabeled_markers_positions">
+<span class="sig-name descname"><span class="pre">unlabeled_markers_positions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MoCapData.unlabeled_markers_positions" title="Link to this definition">#</a></dt>
+<dd><p>unlabeled markers</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.MarkerSetData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">MarkerSetData</span></span><a class="headerlink" href="#natnet_py.protocol.MarkerSetData" title="Link to this definition">#</a></dt>
+<dd><p>The state of a set of markers</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MarkerSetData.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#natnet_py.protocol.MarkerSetData.name" title="Link to this definition">#</a></dt>
+<dd><p>name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MarkerSetData.positions">
+<span class="sig-name descname"><span class="pre">positions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MarkerSetData.positions" title="Link to this definition">#</a></dt>
+<dd><p>positions</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.MarkersData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">MarkersData</span></span><a class="headerlink" href="#natnet_py.protocol.MarkersData" title="Link to this definition">#</a></dt>
+<dd><p>The state of sets of markers</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MarkersData.marker_sets">
+<span class="sig-name descname"><span class="pre">marker_sets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.MarkerSetData" title="natnet_py.protocol.MarkerSetData"><span class="pre">MarkerSetData</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MarkersData.marker_sets" title="Link to this definition">#</a></dt>
+<dd><p>marker sets</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.MarkersData.unlabeled_markers_positions">
+<span class="sig-name descname"><span class="pre">unlabeled_markers_positions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.MarkersData.unlabeled_markers_positions" title="Link to this definition">#</a></dt>
+<dd><p>unlabeled markers</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.LabeledMarkerData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">LabeledMarkerData</span></span><a class="headerlink" href="#natnet_py.protocol.LabeledMarkerData" title="Link to this definition">#</a></dt>
+<dd><p>State of a labeled marker</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="natnet_py.protocol.LabeledMarkerData.decoded_marker_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decoded_marker_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.LabeledMarkerData.decoded_marker_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="natnet_py.protocol.LabeledMarkerData.decoded_param">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decoded_param</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.LabeledMarkerData.decoded_param" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.LabeledMarkerData.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#natnet_py.protocol.LabeledMarkerData.id" title="Link to this definition">#</a></dt>
+<dd><p>Unique identifier</p>
+<p>For active markers, this is the Active ID. For passive markers, this is the PointCloud assigned ID.
+For legacy assets that are created prior to 2.0, this is both AssetID (High-bit) and Member ID (Lo-bit)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.LabeledMarkerData.param">
+<span class="sig-name descname"><span class="pre">param</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#natnet_py.protocol.LabeledMarkerData.param" title="Link to this definition">#</a></dt>
+<dd><p>bitmask of host defined parameters.  Bit values:</p>
+<ul class="simple">
+<li><p>0: Occluded</p></li>
+<li><p>1: PointCloudSolved</p></li>
+<li><p>2: ModelFilled</p></li>
+<li><p>3: HasModel</p></li>
+<li><p>4: Unlabeled</p></li>
+<li><p>5: Active</p></li>
+<li><p>6: Established</p></li>
+<li><p>7: Measurement</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.LabeledMarkerData.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.LabeledMarkerData.position" title="Link to this definition">#</a></dt>
+<dd><p>marker position</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.LabeledMarkerData.residual">
+<span class="sig-name descname"><span class="pre">residual</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#natnet_py.protocol.LabeledMarkerData.residual" title="Link to this definition">#</a></dt>
+<dd><p>marker error residual, in m/ray</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.LabeledMarkerData.size">
+<span class="sig-name descname"><span class="pre">size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#natnet_py.protocol.LabeledMarkerData.size" title="Link to this definition">#</a></dt>
+<dd><p>marker size</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.RigidBodyData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">RigidBodyData</span></span><a class="headerlink" href="#natnet_py.protocol.RigidBodyData" title="Link to this definition">#</a></dt>
+<dd><p>The state of a rigid body.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.RigidBodyData.error">
+<span class="sig-name descname"><span class="pre">error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#natnet_py.protocol.RigidBodyData.error" title="Link to this definition">#</a></dt>
+<dd><p>Mean measure-to-solve deviation (mean marker error) (meters)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.RigidBodyData.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#natnet_py.protocol.RigidBodyData.id" title="Link to this definition">#</a></dt>
+<dd><p>RigidBody identifier</p>
+<p>For rigid body assets, this is the Streaming ID value.
+For skeleton assets, this combines both skeleton ID (High-bit)
+and Bone ID (Low-bit).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.RigidBodyData.markers">
+<span class="sig-name descname"><span class="pre">markers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">RigidBodyMarkerData</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.RigidBodyData.markers" title="Link to this definition">#</a></dt>
+<dd><p>markers</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.RigidBodyData.orientation">
+<span class="sig-name descname"><span class="pre">orientation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.RigidBodyData.orientation" title="Link to this definition">#</a></dt>
+<dd><p>orientation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.RigidBodyData.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.RigidBodyData.position" title="Link to this definition">#</a></dt>
+<dd><p>position</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.RigidBodyData.tracking_valid">
+<span class="sig-name descname"><span class="pre">tracking_valid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#natnet_py.protocol.RigidBodyData.tracking_valid" title="Link to this definition">#</a></dt>
+<dd><p>whether the rigid body is currently tracked</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.SkeletonData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">SkeletonData</span></span><a class="headerlink" href="#natnet_py.protocol.SkeletonData" title="Link to this definition">#</a></dt>
+<dd><p>Skeleton data (requires Motive Body)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.SkeletonData.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#natnet_py.protocol.SkeletonData.id" title="Link to this definition">#</a></dt>
+<dd><p>Skeleton unique identifier</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.SkeletonData.rigid_bodies">
+<span class="sig-name descname"><span class="pre">rigid_bodies</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.RigidBodyData" title="natnet_py.protocol.RigidBodyData"><span class="pre">RigidBodyData</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.SkeletonData.rigid_bodies" title="Link to this definition">#</a></dt>
+<dd><p>Rigid bodies composing the skeleton</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.AnalogChannelData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">AnalogChannelData</span></span><a class="headerlink" href="#natnet_py.protocol.AnalogChannelData" title="Link to this definition">#</a></dt>
+<dd><p>Data read from an analog channel</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.AnalogChannelData.values">
+<span class="sig-name descname"><span class="pre">values</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.AnalogChannelData.values" title="Link to this definition">#</a></dt>
+<dd><p>Signal readings</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.ForcePlateData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">ForcePlateData</span></span><a class="headerlink" href="#natnet_py.protocol.ForcePlateData" title="Link to this definition">#</a></dt>
+<dd><p>Data read by a force plate</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.ForcePlateData.channels">
+<span class="sig-name descname"><span class="pre">channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.AnalogChannelData" title="natnet_py.protocol.AnalogChannelData"><span class="pre">AnalogChannelData</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.ForcePlateData.channels" title="Link to this definition">#</a></dt>
+<dd><p>Channels (signal) (e.g. Fx[], Fy[], Fz[])</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.ForcePlateData.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#natnet_py.protocol.ForcePlateData.id" title="Link to this definition">#</a></dt>
+<dd><p>ForcePlate ID</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.DeviceData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">DeviceData</span></span><a class="headerlink" href="#natnet_py.protocol.DeviceData" title="Link to this definition">#</a></dt>
+<dd><p>Data read by external device</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.DeviceData.channels">
+<span class="sig-name descname"><span class="pre">channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#natnet_py.protocol.AnalogChannelData" title="natnet_py.protocol.AnalogChannelData"><span class="pre">AnalogChannelData</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#natnet_py.protocol.DeviceData.channels" title="Link to this definition">#</a></dt>
+<dd><p>Channels data (e.g. ai0, ai1, ai2)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.DeviceData.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#natnet_py.protocol.DeviceData.id" title="Link to this definition">#</a></dt>
+<dd><p>Device ID</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="natnet_py.protocol.FrameSuffixData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">natnet_py.protocol.</span></span><span class="sig-name descname"><span class="pre">FrameSuffixData</span></span><a class="headerlink" href="#natnet_py.protocol.FrameSuffixData" title="Link to this definition">#</a></dt>
+<dd><p>Metadata of an Optitrack update</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.FrameSuffixData.bitstream_version_changed">
+<span class="sig-name descname"><span class="pre">bitstream_version_changed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#natnet_py.protocol.FrameSuffixData.bitstream_version_changed" title="Link to this definition">#</a></dt>
+<dd><p>whether the bitstream version has changed</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.FrameSuffixData.is_editing">
+<span class="sig-name descname"><span class="pre">is_editing</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#natnet_py.protocol.FrameSuffixData.is_editing" title="Link to this definition">#</a></dt>
+<dd><p>whether it is in editing mode (vs live mode)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.FrameSuffixData.is_recording">
+<span class="sig-name descname"><span class="pre">is_recording</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#natnet_py.protocol.FrameSuffixData.is_recording" title="Link to this definition">#</a></dt>
+<dd><p>whether is recording</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.FrameSuffixData.stamp_camera_mid_exposure">
+<span class="sig-name descname"><span class="pre">stamp_camera_mid_exposure</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#natnet_py.protocol.FrameSuffixData.stamp_camera_mid_exposure" title="Link to this definition">#</a></dt>
+<dd><p>Given in host’s high resolution ticks (from e.g. QueryPerformanceCounter)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.FrameSuffixData.stamp_data_received">
+<span class="sig-name descname"><span class="pre">stamp_data_received</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#natnet_py.protocol.FrameSuffixData.stamp_data_received" title="Link to this definition">#</a></dt>
+<dd><p>Given in host’s high resolution ticks (from e.g. QueryPerformanceCounter)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.FrameSuffixData.stamp_transmit">
+<span class="sig-name descname"><span class="pre">stamp_transmit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#natnet_py.protocol.FrameSuffixData.stamp_transmit" title="Link to this definition">#</a></dt>
+<dd><p>Given in host’s high resolution ticks (from e.g. QueryPerformanceCounter)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.FrameSuffixData.timecode">
+<span class="sig-name descname"><span class="pre">timecode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#natnet_py.protocol.FrameSuffixData.timecode" title="Link to this definition">#</a></dt>
+<dd><p>SMPTE timecode (if available)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.FrameSuffixData.timecode_sub">
+<span class="sig-name descname"><span class="pre">timecode_sub</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#natnet_py.protocol.FrameSuffixData.timecode_sub" title="Link to this definition">#</a></dt>
+<dd><p>timecode sub-frame data</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.FrameSuffixData.timestamp">
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#natnet_py.protocol.FrameSuffixData.timestamp" title="Link to this definition">#</a></dt>
+<dd><p>timestamp since software start ( software timestamp )</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="natnet_py.protocol.FrameSuffixData.tracked_models_changed">
+<span class="sig-name descname"><span class="pre">tracked_models_changed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#natnet_py.protocol.FrameSuffixData.tracked_models_changed" title="Link to this definition">#</a></dt>
+<dd><p>whether the model list changed</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">API Reference</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="async_client.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Asynchronous (asyncio) Client</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Quaternion"><code class="docutils literal notranslate"><span class="pre">Quaternion</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Matrix12x12"><code class="docutils literal notranslate"><span class="pre">Matrix12x12</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Matrix3x4"><code class="docutils literal notranslate"><span class="pre">Matrix3x4</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mocap-description">MoCap Description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapDescription"><code class="docutils literal notranslate"><span class="pre">MoCapDescription</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapDescription.cameras"><code class="docutils literal notranslate"><span class="pre">MoCapDescription.cameras</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapDescription.devices"><code class="docutils literal notranslate"><span class="pre">MoCapDescription.devices</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapDescription.force_plates"><code class="docutils literal notranslate"><span class="pre">MoCapDescription.force_plates</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapDescription.marker_sets"><code class="docutils literal notranslate"><span class="pre">MoCapDescription.marker_sets</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapDescription.rigid_bodies"><code class="docutils literal notranslate"><span class="pre">MoCapDescription.rigid_bodies</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapDescription.skeletons"><code class="docutils literal notranslate"><span class="pre">MoCapDescription.skeletons</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.CameraDescription"><code class="docutils literal notranslate"><span class="pre">CameraDescription</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.CameraDescription.name"><code class="docutils literal notranslate"><span class="pre">CameraDescription.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.CameraDescription.orientation"><code class="docutils literal notranslate"><span class="pre">CameraDescription.orientation</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.CameraDescription.position"><code class="docutils literal notranslate"><span class="pre">CameraDescription.position</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceDescription"><code class="docutils literal notranslate"><span class="pre">DeviceDescription</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceDescription.channel_data_type"><code class="docutils literal notranslate"><span class="pre">DeviceDescription.channel_data_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceDescription.channels"><code class="docutils literal notranslate"><span class="pre">DeviceDescription.channels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceDescription.device_type"><code class="docutils literal notranslate"><span class="pre">DeviceDescription.device_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceDescription.id"><code class="docutils literal notranslate"><span class="pre">DeviceDescription.id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceDescription.name"><code class="docutils literal notranslate"><span class="pre">DeviceDescription.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceDescription.serial_number"><code class="docutils literal notranslate"><span class="pre">DeviceDescription.serial_number</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.cal_matrix"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.cal_matrix</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.channel_data_type"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.channel_data_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.channels"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.channels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.corners"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.corners</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.id"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.length"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.length</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.plate_type"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.plate_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.position"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.position</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.serial_number"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.serial_number</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateDescription.width"><code class="docutils literal notranslate"><span class="pre">ForcePlateDescription.width</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkerSetDescription"><code class="docutils literal notranslate"><span class="pre">MarkerSetDescription</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkerSetDescription.markers"><code class="docutils literal notranslate"><span class="pre">MarkerSetDescription.markers</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkerSetDescription.name"><code class="docutils literal notranslate"><span class="pre">MarkerSetDescription.name</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyDescription"><code class="docutils literal notranslate"><span class="pre">RigidBodyDescription</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyDescription.id"><code class="docutils literal notranslate"><span class="pre">RigidBodyDescription.id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyDescription.markers"><code class="docutils literal notranslate"><span class="pre">RigidBodyDescription.markers</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyDescription.name"><code class="docutils literal notranslate"><span class="pre">RigidBodyDescription.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyDescription.parent_id"><code class="docutils literal notranslate"><span class="pre">RigidBodyDescription.parent_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyDescription.position"><code class="docutils literal notranslate"><span class="pre">RigidBodyDescription.position</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.SkeletonDescription"><code class="docutils literal notranslate"><span class="pre">SkeletonDescription</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.SkeletonDescription.id"><code class="docutils literal notranslate"><span class="pre">SkeletonDescription.id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.SkeletonDescription.name"><code class="docutils literal notranslate"><span class="pre">SkeletonDescription.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.SkeletonDescription.rigid_bodies"><code class="docutils literal notranslate"><span class="pre">SkeletonDescription.rigid_bodies</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RBMarker"><code class="docutils literal notranslate"><span class="pre">RBMarker</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RBMarker.active_label"><code class="docutils literal notranslate"><span class="pre">RBMarker.active_label</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RBMarker.name"><code class="docutils literal notranslate"><span class="pre">RBMarker.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RBMarker.position"><code class="docutils literal notranslate"><span class="pre">RBMarker.position</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mocap-data">MoCap Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData"><code class="docutils literal notranslate"><span class="pre">MoCapData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.devices"><code class="docutils literal notranslate"><span class="pre">MoCapData.devices</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.force_plates"><code class="docutils literal notranslate"><span class="pre">MoCapData.force_plates</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.frame_number"><code class="docutils literal notranslate"><span class="pre">MoCapData.frame_number</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.labeled_markers"><code class="docutils literal notranslate"><span class="pre">MoCapData.labeled_markers</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.marker_sets"><code class="docutils literal notranslate"><span class="pre">MoCapData.marker_sets</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.rigid_bodies"><code class="docutils literal notranslate"><span class="pre">MoCapData.rigid_bodies</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.skeletons"><code class="docutils literal notranslate"><span class="pre">MoCapData.skeletons</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.suffix_data"><code class="docutils literal notranslate"><span class="pre">MoCapData.suffix_data</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MoCapData.unlabeled_markers_positions"><code class="docutils literal notranslate"><span class="pre">MoCapData.unlabeled_markers_positions</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkerSetData"><code class="docutils literal notranslate"><span class="pre">MarkerSetData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkerSetData.name"><code class="docutils literal notranslate"><span class="pre">MarkerSetData.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkerSetData.positions"><code class="docutils literal notranslate"><span class="pre">MarkerSetData.positions</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkersData"><code class="docutils literal notranslate"><span class="pre">MarkersData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkersData.marker_sets"><code class="docutils literal notranslate"><span class="pre">MarkersData.marker_sets</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.MarkersData.unlabeled_markers_positions"><code class="docutils literal notranslate"><span class="pre">MarkersData.unlabeled_markers_positions</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData.decoded_marker_id"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData.decoded_marker_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData.decoded_param"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData.decoded_param</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData.id"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData.id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData.param"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData.param</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData.position"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData.position</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData.residual"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData.residual</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.LabeledMarkerData.size"><code class="docutils literal notranslate"><span class="pre">LabeledMarkerData.size</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyData"><code class="docutils literal notranslate"><span class="pre">RigidBodyData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyData.error"><code class="docutils literal notranslate"><span class="pre">RigidBodyData.error</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyData.id"><code class="docutils literal notranslate"><span class="pre">RigidBodyData.id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyData.markers"><code class="docutils literal notranslate"><span class="pre">RigidBodyData.markers</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyData.orientation"><code class="docutils literal notranslate"><span class="pre">RigidBodyData.orientation</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyData.position"><code class="docutils literal notranslate"><span class="pre">RigidBodyData.position</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.RigidBodyData.tracking_valid"><code class="docutils literal notranslate"><span class="pre">RigidBodyData.tracking_valid</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.SkeletonData"><code class="docutils literal notranslate"><span class="pre">SkeletonData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.SkeletonData.id"><code class="docutils literal notranslate"><span class="pre">SkeletonData.id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.SkeletonData.rigid_bodies"><code class="docutils literal notranslate"><span class="pre">SkeletonData.rigid_bodies</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.AnalogChannelData"><code class="docutils literal notranslate"><span class="pre">AnalogChannelData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.AnalogChannelData.values"><code class="docutils literal notranslate"><span class="pre">AnalogChannelData.values</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateData"><code class="docutils literal notranslate"><span class="pre">ForcePlateData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateData.channels"><code class="docutils literal notranslate"><span class="pre">ForcePlateData.channels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.ForcePlateData.id"><code class="docutils literal notranslate"><span class="pre">ForcePlateData.id</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceData"><code class="docutils literal notranslate"><span class="pre">DeviceData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceData.channels"><code class="docutils literal notranslate"><span class="pre">DeviceData.channels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.DeviceData.id"><code class="docutils literal notranslate"><span class="pre">DeviceData.id</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.bitstream_version_changed"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.bitstream_version_changed</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.is_editing"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.is_editing</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.is_recording"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.is_recording</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.stamp_camera_mid_exposure"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.stamp_camera_mid_exposure</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.stamp_data_received"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.stamp_data_received</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.stamp_transmit"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.stamp_transmit</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.timecode"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.timecode</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.timecode_sub"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.timecode_sub</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.timestamp"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.timestamp</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natnet_py.protocol.FrameSuffixData.tracked_models_changed"><code class="docutils literal notranslate"><span class="pre">FrameSuffixData.tracked_models_changed</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jerome Guzzi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Jerome Guzzi.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
