@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title></title>
+
+  <style>
+
+table{
+  width:100%;
+  table-layout: fixed;
+  border-spacing: 0px;
+  max-width:800;
+}
+thead{
+  background-color: grey;
+ }
+tbody{
+  height:300px;
+  overflow-x:auto;
+  margin-top: 0px;
+  background-color: lightgrey;
+}
+th{
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 14px;
+  color: black;
+  text-transform: uppercase;
+}
+td{
+  padding: 15px;
+  text-align: left;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 14px;
+  color: #black;
+  border-bottom: solid 1px gray;
+}
+</style>
+
+  <script type='text/javascript'>
+  var svg;
+  var svg_world;
+
+function connect() {
+
+var ws_address = "ws://127.0.0.1:8000/"
+console.log(' Try to connect to ' + ws_address)
+var ws = new WebSocket(ws_address);
+
+ws.onopen = function(event) {
+  console.log(' Opened Web socket ' + ws_address)
+};
+
+ws.onmessage = function(event) {
+  var data = JSON.parse(event.data)
+  update_data(data)
+}
+
+  ws.onclose = function(e) {
+    console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+      setTimeout(function() {
+      connect();
+    }, 1000);
+  };
+
+  ws.onerror = function(err) {
+    console.error('Socket encountered error: ', err.message, 'Closing socket');
+    ws.close();
+  };
+}
+
+connect();
+
+var NS = "http://www.w3.org/2000/svg";
+
+function update_data(data) {
+  var svg_world = document.getElementById("world");
+  var table = document.getElementById("table");
+  clear_map(svg_world);
+  clear_table(table);
+  var hue = 0;
+  var delta_hue = 0;
+  var n = Object.keys(data).length;
+  if (n > 0) {
+    delta_hue = 360 / n;
+  }
+  
+  for (var name in data) {
+    add_rigid_body_to_map(name, data[name], hue, svg_world);
+    add_rigid_body_to_table(name, data[name], table);
+    hue += delta_hue;
+  }
+};
+
+function clear_map(map) {
+  map.innerHTML = "";
+}
+
+function clear_table(table) {
+  table.innerHTML = "";
+}
+
+function add_rigid_body_to_map(name, rb, hue, map) {
+  var [tracked, x, y, z, roll, pitch, yaw] = rb;
+  z = -z;
+  var color = "hsl(" + hue + " 100% 50%)";
+  var l = document.createElementNS(NS,"line");
+  l.setAttribute("r", "0.1");
+  l.setAttribute("x1", x);
+  l.setAttribute("y1", z);
+  l.setAttribute("x2", x + 0.25 * Math.cos(yaw));
+  l.setAttribute("y2", z - 0.25 * Math.sin(yaw));
+  l.setAttribute("stroke", color);
+  l.setAttribute("stroke-width", 0.05);
+  var c = document.createElementNS(NS,"circle");
+  c.setAttribute("r", "0.1");
+  c.setAttribute("cx", x);
+  c.setAttribute("cy", z);
+  c.setAttribute("fill", color);
+  var t = document.createElementNS(NS,"text");
+  t.setAttribute("x", x + 0.2);
+  t.setAttribute("y", z + 0.2);
+  t.setAttribute("font-size", 0.2);
+  t.innerHTML = name;
+
+  map.appendChild(l);
+  map.appendChild(c);
+  map.appendChild(t);
+}
+
+function add_rigid_body_to_table(name, rb, table) {
+  var row = table.insertRow(-1);
+  row.insertCell(0).innerHTML = name;
+  row.insertCell(1).innerHTML = rb[0];
+  for (var i = 1; i < 4; i++) {
+    row.insertCell(i+1).innerHTML = rb[i].toFixed(3);
+  }
+  for (var i = 4; i < 7; i++) {
+    row.insertCell(i+1).innerHTML = (180 * rb[i] / Math.PI).toFixed(3);
+  }
+}
+
+  </script>
+  
+  
+</head>
+<body>
+  <div>
+    <h1></h1>
+  </div>
+  <svg id="svg" width="100%" height="100%" viewBox="-6 -6 12 12" style="background-color:lightgrey">
+    <line stroke="red" stroke-width="0.03" x1="0" y1="0" x2="1" y2="0"/>
+    <line stroke="blue" stroke-width="0.03" x1="0" y1="0" x2="0" y2="-1"/>
+    <g id='world'>
+    </g>
+  </svg>
+  <table>
+    <thead>
+    <tr>
+     <th>name</th>
+     <th>tracked</th>
+     <th>x</th>
+     <th>y</th>
+     <th>z</th>
+     <th>roll</th> 
+     <th>pitch</th> 
+     <th>yaw</th> 
+    </tr>
+  </thead>
+  <tbody id="table">
+  </tbody>
+  </table>
+</body>
+</html>
