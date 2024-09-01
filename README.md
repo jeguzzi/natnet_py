@@ -13,7 +13,7 @@ The package contains two clients with very similar APIs (one offering an asyncro
    import natnet_py
 
    client = natnet_py.SyncClient()
-   connected = client.connect(discovery_address=255.255.255.255)
+   connected = client.connect(discovery_address="255.255.255.255")
    if connected:
        data = client.get_data()
    client.close()
