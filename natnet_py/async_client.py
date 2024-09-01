@@ -233,7 +233,7 @@ class AsyncClient:
 
     3. and/or connect to a server directly
 
-       >>> await client.connet(server_address=127.0.0.1)
+       >>> await client.connect(server_address=127.0.0.1)
 
     3. Read data
 
