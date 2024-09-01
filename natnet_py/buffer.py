@@ -1,7 +1,7 @@
+from __future__ import annotations
+
 import struct
-import numpy as np
-import numpy.typing as npt
-from typing import Any, cast
+from typing import Any, TypeAlias, cast
 
 Vector3S = struct.Struct('<fff')
 QuaternionS = struct.Struct('<ffff')
@@ -9,8 +9,12 @@ FloatValue = struct.Struct('<f')
 DoubleValue = struct.Struct('<d')
 MatrixS = struct.Struct('<ffffffffffff')
 
-Vector3 = npt.NDArray[np.float64]
-Quaternion = npt.NDArray[np.float64]
+Vector3: TypeAlias = tuple[float, float, float]
+"""(x, y, z)"""
+Quaternion: TypeAlias = tuple[float, float, float, float]
+"""(x, y, z, w)"""
+MatrixRow: TypeAlias = tuple[float, float, float, float, float, float, float,
+                             float, float, float, float, float]
 
 
 class Buffer:
@@ -53,8 +57,15 @@ class Buffer:
         return value
 
     def read_bytes(self, size: int) -> bytes:
-        value = self.data[self.index: self.index + size]
-        self.index += size
+        if size > 0:
+            value = self.data[self.index:self.index + size]
+            self.index += size
+        elif size < 0:
+            value = self.data[self.index:size]
+            self.index = len(self.data) + size
+        else:
+            value = self.data[self.index:]
+            self.index = len(self.data)
         return value
 
     def read_long(self) -> int:
@@ -74,14 +85,12 @@ class Buffer:
         return cast(int, value)
 
     def read_vector(self) -> Vector3:
-        value = np.asarray(
-            Vector3S.unpack(self.data[self.index:self.index + 12]))
+        value = Vector3S.unpack(self.data[self.index:self.index + 12])
         self.index += 12
         return value
 
     def read_quaternion(self) -> Quaternion:
-        value = np.asarray(
-            QuaternionS.unpack(self.data[self.index:self.index + 16]))
+        value = QuaternionS.unpack(self.data[self.index:self.index + 16])
         self.index += 16
         return value
 
@@ -95,10 +104,10 @@ class Buffer:
         self.index += 8
         return cast(float, value[0])
 
-    def read_matrix(self) -> npt.NDArray[np.float64]:
+    def read_matrix_row(self) -> MatrixRow:
         value = MatrixS.unpack(self.data[self.index:self.index + 4 * 12])
         self.index += 4 * 12
-        return np.asarray(value)
+        return value
 
     def read(self, fmt: str, size: int) -> Any:
         value = struct.unpack(fmt, self.data[self.index:self.index + size])
