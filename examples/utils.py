@@ -25,7 +25,7 @@ def data_callback(client: Client) -> Callable[[int, MoCapData], None]:
         logging.info(f"@{f}:")
         for rb in data.rigid_bodies:
             logging.info(
-                f"\t{rbs.get(rb.id, '?')}, {rb.tracking_valid}, {rb.error:.1E}: "
+                f"\t{rbs.get(rb.id, '?')}, {rb.tracking_valid}, {rb.error:.1E}, "
                 f"{rb.position}, {rb.orientation}"
             )
 

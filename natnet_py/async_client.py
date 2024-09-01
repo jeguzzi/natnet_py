@@ -191,6 +191,7 @@ class CommandProtocol(asyncio.Protocol):
     async def discover(
         self, broadcast_address: str, timeout: float = 5.0, number: int = 1
     ) -> dict[tuple[str, int], protocol.ServerInfo]:
+        self.logger.info(f"Discovering servers (number={number})")
         self.logger.debug(f"Sending discovery message to {broadcast_address}:{self._server[1]}")
         data = protocol.pack(protocol.DiscoveryRequest())
         self._transport.sendto(data, (broadcast_address, self._server[1]))
@@ -200,6 +201,7 @@ class CommandProtocol(asyncio.Protocol):
 
         def cb(msg: protocol.ServerInfo, addr: tuple[str, int]) -> None:
             servers[addr] = msg
+            self.logger.debug(f"Discovered server {addr[0]}:{addr[1]}: {msg}")
             if number > 0 and len(servers) >= number:
                 complete.set_result(None)
 
@@ -211,6 +213,7 @@ class CommandProtocol(asyncio.Protocol):
             self.logger.warning("Discovery timed out")
 
         del self._response_cb[protocol.ServerInfo]
+        self.logger.info(f"Discovered {len(servers)} servers")
         return servers
 
 
@@ -627,7 +630,7 @@ class AsyncClient:
         self.command_has_connected = loop.create_future()
         self.command_has_unconnected = loop.create_future()
         self.command_has_unconnected.add_done_callback(self._has_unconnected_command)
-        self.logger.info(f"Creating command socket {self.client_address}")
+        self.logger.info(f"Opening command socket on {self.client_address}")
         self.cmd_transport, self.cmd_protocol = await loop.create_datagram_endpoint(
             lambda: CommandProtocol(
                 '',
@@ -688,9 +691,9 @@ class AsyncClient:
                 "Please disconnect from the current server before "
                 "try to connect to a new server")
             return False
-        self.logger.info(f"Connect {discovery_address} {server_address}")
         await self.init()
         if not self.cmd_protocol:
+            self.logger.warning("Client not initialized")
             return False
         server = (server_address, self.command_port)
         if discovery_address:
@@ -699,23 +702,27 @@ class AsyncClient:
             if servers:
                 server, self.server_info = next(iter(servers.items()))
                 self.cmd_protocol._server = server
-                self.logger.info(f"Discovered server at {server[0]}:{server[1]}")
+                self.logger.debug(f"Received server info {self.server_info}")
+                self.logger.info(f"Connected to server {server[0]}:{server[1]}")
             else:
                 return False
         else:
-            self.logger.debug(f"Connecting to server at {server_address} ...")
+            self.logger.info(f"Connecting to {server_address} ...")
             # TODO(Jerome): do I really need to call it now?
             self.server_info = await self.cmd_protocol.connect(timeout)
             if not self.server_info:
                 self.logger.warning("Failed connecting.")
                 return False
-            self.logger.debug(f"Connected: {self.server_info}")
+            else:
+                self.logger.debug(f"Received server info {self.server_info}")
+            self.logger.info(f"Connected to server {server[0]}:{server[1]}")
         await self.update_description(timeout)
         if not self.description:
             return False
-        self.logger.info(
-            f"Got description for rigid bodies: {', '.join(self.rigid_body_names.values())}"
-        )
+        self.logger.debug(f"Received server description {self.description}")
+        # self.logger.info(
+        #     f"Got description for rigid bodies: {', '.join(self.rigid_body_names.values())}"
+        # )
         if self._sync:
             self.clock = clock.SynchronizedClock(
                 self.cmd_protocol,
@@ -724,8 +731,6 @@ class AsyncClient:
                 now=self._now,
             )
             await self.clock.init()
-
-        self.logger.info(f"NatNet client connected to {server[0]}:{server[1]}")
         if start_listening_for_data:
             return await self.start_listening_for_data()
         return True
@@ -748,7 +753,7 @@ class AsyncClient:
         self.data_has_unconnected = loop.create_future()
         self.data_has_unconnected.add_done_callback(self._has_unconnected_data)
         self.logger.info(
-            f"Creating data {'multicast' if self.use_multicast else 'unicast'}"
+            f"Opening data {'multicast' if self.use_multicast else 'unicast'}"
             f" socket on {self.client_address}:{self.data_port}"
         )
         if self.use_multicast:
@@ -837,6 +842,7 @@ class AsyncClient:
 
         :returns:   True if successful
         """
+        logging.info("Unconnecting server ...")
         self._unconnect_server()
         if self.data_has_unconnected:
             await asyncio.wait([self.data_has_unconnected])
@@ -846,6 +852,7 @@ class AsyncClient:
         """
         Closes the client connections.
         """
+        logging.info("Closing client ...")
         self._unconnect_client()
         if self.command_has_unconnected:
             await asyncio.wait([self.command_has_unconnected])
@@ -866,6 +873,7 @@ class AsyncClient:
                 filter(None, [self.data_has_unconnected, self.command_has_unconnected]),
                 return_when=asyncio.FIRST_COMPLETED,
             )
+            logging.warning("Lost connection")
             return True
         except asyncio.exceptions.CancelledError:
             return False

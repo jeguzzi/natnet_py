@@ -321,23 +321,22 @@ document.write(`
 <li><p>Run one of the examples</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3<span class="w"> </span>examples/client_async.py
 
-<span class="go">[STAMP] INFO: Connecting NatNet server ...</span>
-<span class="go">[STAMP] INFO: Discovered servers: XXX.XXX.XXX.XXX:1510</span>
-<span class="go">[STAMP] INFO: Got description for rigid bodies: rb0</span>
-<span class="go">[STAMP] INFO: NatNet client connected to XXX.XXX.XXX.XXX:1510</span>
-<span class="go">[STAMP] INFO: Creating data unicast socket on port 1511</span>
-<span class="go">[STAMP] INFO: Start initial clock sync</span>
-<span class="go">[STAMP] INFO: Connected NatNet server</span>
-<span class="go">[STAMP] INFO: @STAMP_NS:</span>
-<span class="go">[STAMP] INFO: rb0, True, 1.3E-04: (0.001, 0.015, 0.009), (-4.559e-04,    3.982e-04, 5.767e-04, -1.000e+00)</span>
-<span class="go">[STAMP] INFO: @STAMP_NS:</span>
-<span class="go">[STAMP] INFO: rb0, True, 1.6E-04: (0.001 +0.015 -0.009), (5.695e-04,    1.975e-04, 8.105e-04, -1.000e+00)</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] INFO: Opening command socket on 0.0.0.0</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] INFO: Discovering servers (number=1)</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] INFO: Discovered 1 servers</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] INFO: Connected to server XXX.XXX.XXX:1510</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] INFO: Performing initial clock sync 0 ...</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] INFO: Initial clock sync done: min_rtt NS ns, beta 0.0, delta NS</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] INFO: Opening data unicast socket on 0.0.0.0:1511</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] INFO: @NS:</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] INFO: &lt;NAME&gt;, True, 1.0E-04: (1.1, 2.2, 3.3), (0.5, 0.5, 0.5, 0.5)</span>
 <span class="go">[...]</span>
-<span class="go">[STAMP] INFO: Unconnecting NatNet server ...</span>
-<span class="go">[STAMP] WARNING: Data socket closed</span>
-<span class="go">[STAMP] WARNING: Command socket closed</span>
-<span class="go">[STAMP] INFO: Unconnected</span>
-<span class="go">[STAMP] INFO: Unconnected NatNet server</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] INFO: Unconnecting server ...</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] WARNING: Data socket closed</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] INFO: Unconnected</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] INFO: Closing client ...</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] WARNING: Command socket closed</span>
+<span class="go">[YYYY-mm-DD HH:MM:SS] INFO: Closed</span>
 </pre></div>
 </div>
 </li>

@@ -14,7 +14,7 @@ import numpy as np
 import quaternion  # type: ignore
 
 from natnet_py import AsyncClient
-from natnet_py.protocol import MoCapData, MoCapDescription
+from natnet_py.protocol import MoCapData
 
 
 async def producer_handler(
@@ -31,18 +31,19 @@ async def producer_handler(
 Msg = dict[str, tuple[bool, float, float, float, float, float, float]]
 
 
-def msg(data: MoCapData, description: MoCapDescription | None) -> Msg:
+def msg(data: MoCapData, names: dict[int, str]) -> Msg:
     rbs: Msg = {}
-    for rb, desc in zip(data.rigid_bodies, description.rigid_bodies):
-        q = np.quaternion(*rb.orientation)
+    for rb in data.rigid_bodies:
+        q = np.quaternion(*rb.orientation)  # type: ignore
         rpy = [float(value) for value in quaternion.as_euler_angles(q)]
-        rbs[desc.name] = (rb.tracking_valid, *rb.position, *rpy)
+        rbs[names.get(rb.id, str(rb.id))] = (rb.tracking_valid, *rb.position, *rpy)  # type: ignore
     return rbs
 
 
 def parser(args: Any = None) -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     return parser
+
 
 class WebUI:
 
@@ -76,7 +77,7 @@ class WebUI:
         while True:
             data = await self._client.get_data()
             if data:
-                await self.send(msg(data[1], self._client.description))
+                await self.send(msg(data[1], self._client.rigid_body_names))
                 await asyncio.sleep(self.min_period)
         await self.stop()
 
@@ -93,7 +94,7 @@ class WebUI:
                         websocket: websockets.server.WebSocketServerProtocol,
                         path: str,
                         port: int = 8000) -> None:
-        logging.info('Websocket connection opened')
+        logging.debug('Websocket connection opened')
         queue: asyncio.Queue = asyncio.Queue()
         self.queues.append(queue)
         producer_task = asyncio.ensure_future(
@@ -103,7 +104,7 @@ class WebUI:
         for task in pending:
             task.cancel()
         self.queues.remove(queue)
-        logging.info('Websocket connection closed')
+        logging.debug('Websocket connection closed')
 
     async def send(self, msg: Any) -> None:
         data = json.dumps(msg)
@@ -111,7 +112,7 @@ class WebUI:
             await queue.put(data)
 
     async def stop(self) -> None:
-        logging.info('Stopping UI')
+        logging.info('Stopping GUI ...')
         if self.server:
             self.server.close()
             await self.server.wait_closed()

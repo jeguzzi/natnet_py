@@ -13,22 +13,13 @@ def main(args: Any = None) -> None:
         queue=-1,
         sync=not args.no_sync
     )
-    logging.info("Connecting NatNet server ...")
     if client.connect(server_address=args.server, discovery_address=args.discovery,
         timeout=5.0, start_listening_for_data=False):
-        logging.info("Connected NatNet server")
-        if not client.start_listening_for_data():
-            logging.warning("Failed starting listening")
-        else:
+        if client.start_listening_for_data():
             if not args.silent:
                 client.data_callback = data_callback(client)
-        if not client.wait(duration=args.duration):
-            logging.warning("Failed running")
-    else:
-        logging.warning("Failed connecting NatNet server")
-    logging.info("Unconnecting NatNet server ...")
+        _ = client.wait(duration=args.duration):
     client.unconnect()
-    logging.info("Unconnected NatNet server")
     client.close()
 
 
