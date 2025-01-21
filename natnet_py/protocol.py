@@ -4,7 +4,16 @@ import dataclasses as dc
 import enum
 import logging
 import socket
-from typing import Any, Callable, Protocol, Self, Type, TypeVar, cast
+from collections.abc import Callable
+from typing import Any, Protocol, Type, TypeVar, cast
+
+try:
+    from typing import Self
+except ImportError:
+    try:
+        from typing_extensions import Self
+    except ImportError:
+        pass
 
 from .buffer import Buffer, MatrixRow, Quaternion, Vector3
 from .write_buffer import WriteBuffer

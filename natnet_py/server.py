@@ -1,4 +1,5 @@
 # modified from https://github.com/mje-nz/python_natnet/blob/master/src/natnet/Server.py
+from __future__ import annotations
 
 import asyncio
 import logging

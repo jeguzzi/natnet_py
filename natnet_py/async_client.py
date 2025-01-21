@@ -1,4 +1,6 @@
-﻿import socket
+﻿from __future__ import annotations
+
+import socket
 import logging
 import asyncio
 import struct
@@ -7,7 +9,9 @@ import time
 from . import protocol
 from . import clock
 
-from typing import Any, Callable, TypeVar, Type, cast
+from collections.abc import Callable
+
+from typing import Any, TypeVar, Type, cast
 
 T = TypeVar("T")
 CmdDataCallback = Callable[[protocol.MoCapData], None]

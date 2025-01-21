@@ -1,9 +1,11 @@
-﻿import logging
+﻿from __future__ import annotations
+
+import logging
 import asyncio
 import time
 from threading import Thread, current_thread
 from functools import wraps
-from typing import Callable
+from collections.abc import Callable
 
 from . import protocol
 from .async_client import AsyncClient, DataCallback

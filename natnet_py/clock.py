@@ -1,9 +1,12 @@
 # largely inspired by https://github.com/mje-nz/python_natnet/blob/master/src/natnet/comms.py
 
+from __future__ import annotations
+
 import asyncio
 import logging
 import time
-from typing import Callable, Protocol
+from collections.abc import Callable
+from typing import Protocol
 
 from . import protocol
 
