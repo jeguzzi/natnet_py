@@ -63,7 +63,8 @@ class SynchronizedClock:
         while self.count < 10:
             await self.echo()
         self.logger.info(
-            f"Initial clock sync done: min_rtt {self._min_rtt} ns, beta {self._beta}, delta {self._t2_c - self._t2_s}"
+            f"Initial clock sync done: min_rtt {self._min_rtt} ns, "
+            f"beta {self._beta}, delta {self._t2_c - self._t2_s}"
         )
 
     async def _run(self) -> None:
@@ -101,7 +102,8 @@ class SynchronizedClock:
             self._t2_s = t1_s + int((1 + self._beta) * rtt / 2)
             self._t2_c = t2_c
             self.logger.debug(
-                f"-> Echo {self.count: 5d}: client time {self._t0_c} -- {self._t2_c}, server time {self._t2_s}"
+                f"-> Echo {self.count: 5d}: client time {self._t0_c} -- {self._t2_c}, "
+                f"server time {self._t2_s}"
             )
         else:
             dt_c = t2_c - self._t2_c
@@ -131,7 +133,8 @@ class SynchronizedClock:
                         f"correction {delta} ns, drift {drift}, new beta: {self._beta}"
                     )
                 self.logger.debug(
-                    f"-> Echo {self.count}: client time {self._t0_c} -- {self._t2_c}, server time {self._t2_s}"
+                    f"-> Echo {self.count}: client time {self._t0_c} -- {self._t2_c}, "
+                    f"server time {self._t2_s}"
                     f", RTT {rtt} (min {self._min_rtt}), dt {dt_c}")
 
         if rtt < self._min_rtt:

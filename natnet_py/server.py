@@ -13,7 +13,6 @@ from . import protocol
 
 
 class Server:
-
     """A mock-up of a NatNet server that partially implements NatNet.
 
     Only used to test client code.
@@ -164,8 +163,8 @@ class ServerProtocol:
         request = protocol.unpack(protocol.Buffer(data))
         # logging.getLogger().debug(f'Received {request}')
         response: protocol.Msg | None = None
-        if isinstance(request, protocol.ConnectRequest) or isinstance(
-                request, protocol.DiscoveryRequest):
+        if isinstance(request,
+                      (protocol.ConnectRequest, protocol.DiscoveryRequest)):
             response = self.get_server_info()
             self._server.add_client(addr[0])
         elif isinstance(request, protocol.EchoRequest):
@@ -181,8 +180,7 @@ class ServerProtocol:
         if response:
             self.transport.sendto(protocol.pack(response), addr)
 
-    def respond(self,
-                request: protocol.Request) -> protocol.Response | None:
+    def respond(self, request: protocol.Request) -> protocol.Response | None:
         data = request.data.decode("ascii")
         if data == "FrameRate":
             return self.get_framerate()
@@ -221,7 +219,7 @@ class ServerProtocol:
             multicast=self._server.multicast,
             multicast_address=self._server.multicast_address)
         version = protocol.Version((*protocol.get_version(), 0, 0))
-        return protocol.ServerInfo(application_name=u'python_natnet server',
+        return protocol.ServerInfo(application_name='python_natnet server',
                                    server_version=version,
                                    nat_net_stream_version_server=version,
                                    high_resolution_clock_frequency=1000000000,

@@ -1,8 +1,6 @@
 ﻿from __future__ import annotations
 
-import logging
 import argparse
-from typing import Any
 import netifaces
 import h5py
 import asyncio
@@ -11,19 +9,12 @@ from collections import defaultdict
 
 from natnet_py import AsyncClient
 from natnet_py.protocol import RigidBodyData
+from natnet_py.utils import init_logging, set_log_level
+
+description = "Dump NatNet data to HDF5"
 
 
-def init_logging() -> None:
-    FORMAT = "[%(asctime)s] %(levelname)s: %(message)s"
-    logging.basicConfig(format=FORMAT)
-
-
-def set_log_level(level_name: str) -> None:
-    logging.getLogger().setLevel(logging.getLevelName(level_name))
-
-
-def parser(args: Any = None) -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser()
+def init_parser(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("output", help="The HDF5 output file path")
     parser.add_argument(
         "--server", default="", help="The server address to connect to.")
@@ -40,11 +31,9 @@ def parser(args: Any = None) -> argparse.ArgumentParser:
     parser.add_argument(
         "--duration", default=0, type=float,
         help="Record duration in seconds. Set to zero or negative to ignore.")
-    return parser
 
 
-def parse(args: Any = None) -> argparse.Namespace:
-    args = parser(args).parse_args()
+def parse(args: argparse.Namespace) -> None:
     if args.iface:
         addrs = netifaces.ifaddresses(args.iface)
         if addrs:
@@ -55,9 +44,9 @@ def parse(args: Any = None) -> argparse.Namespace:
     return args  # type: ignore
 
 
-async def run() -> None:
+async def run(args: argparse.Namespace) -> None:
+    parse(args)
     init_logging()
-    args = parser().parse_args()
     set_log_level(args.log_level)
     client = AsyncClient(queue=0)
     connected = await client.connect(discovery_address=args.discovery, server_address=args.server)
@@ -98,5 +87,15 @@ async def run() -> None:
         client.logger.info("Saved data")
 
 
-def main(args: Any = None) -> None:
-    asyncio.run(run())
+def _main(args: argparse.Namespace) -> None:
+    asyncio.run(run(args))
+
+
+def parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser()
+    init_parser(p)
+    return p
+
+
+def main():
+    _main(parser().parse_args())

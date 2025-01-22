@@ -1,25 +1,17 @@
 ﻿from __future__ import annotations
 
 import cmd
-import logging
 import argparse
-from typing import Any
 import netifaces
+import sys
 
 from natnet_py import SyncClient
+from natnet_py.utils import init_logging, set_log_level
+
+description = "NatNet Client CLI"
 
 
-def init_logging() -> None:
-    FORMAT = "[%(asctime)s] %(levelname)s: %(message)s"
-    logging.basicConfig(format=FORMAT)
-
-
-def set_log_level(level_name: str) -> None:
-    logging.getLogger().setLevel(logging.getLevelName(level_name))
-
-
-def parser(args: Any = None) -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser()
+def init_parser(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--server", default="", help="The server address to connect to.")
     parser.add_argument(
@@ -39,11 +31,9 @@ def parser(args: Any = None) -> argparse.ArgumentParser:
     parser.add_argument(
         "--no_sync", action='store_true',
         help="Add to disable clock synchronization")
-    return parser
 
 
-def parse(args: Any = None) -> argparse.Namespace:
-    args = parser(args).parse_args()
+def parse(args: argparse.Namespace) -> None:
     if args.iface:
         addrs = netifaces.ifaddresses(args.iface)
         if addrs:
@@ -51,7 +41,6 @@ def parse(args: Any = None) -> argparse.Namespace:
             args.client = net["addr"]
             if "broadcast" in net:
                 args.discovery = net["broadcast"]
-    return args  # type: ignore
 
 
 class CmdShell(cmd.Cmd):
@@ -59,9 +48,8 @@ class CmdShell(cmd.Cmd):
     prompt = '(natnet) '
     file = None
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        args = parse()
+    def __init__(self, args: argparse.Namespace, **kwargs):
+        super().__init__(**kwargs)
         set_log_level(args.log_level)
         self.client = SyncClient(
             address=args.client, queue=args.queue, sync=not args.no_sync)
@@ -125,7 +113,10 @@ class CmdShell(cmd.Cmd):
 
     def do_log_level(self, arg):
         "Set the log level: log_level LEVEL"
-        set_log_level(arg)
+        try:
+            set_log_level(arg)
+        except ValueError as e:
+            print(str(e), file=sys.stderr)
 
     def do_delay(self, arg):
         "Compute the latest data delay"
@@ -147,6 +138,16 @@ def bool_from_string(value: str) -> bool:
     return value in set(("False", "F", "f", "false"))
 
 
-def main():
+def _main(args: argparse.Namespace) -> None:
     init_logging()
-    CmdShell(completekey='tab').cmdloop()
+    parse(args)
+    CmdShell(args=args, completekey='tab').cmdloop()
+
+
+def parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser()
+    init_parser(p)
+    return p
+
+def main():
+    _main(parser().parse_args())

@@ -1,0 +1,87 @@
+[build-system]
+requires = ["setuptools >= 61.0",  "wheel", "setuptools-git-versioning>=2.0,<3", ]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "natnet_py"
+dependencies = [
+  "netifaces>=0.11"
+]
+
+requires-python = ">=3.10"
+authors = [
+  {name = "Jerome Guzzi", email = "jerome@idsia.ch"},
+]
+maintainers = [
+  {name = "Jerome Guzzi", email = "jerome@idsia.ch"}
+]
+description = "Pure Python NatNet client."
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["optitrack", "natnet"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python :: 3",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Education",
+  "Typing :: Typed"
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+gui = [
+  "numpy-quaternion",
+  "numpy",
+  "websockets",
+]
+dump = [
+  "h5py",
+]
+dummy = [
+  "PyYaml",
+]
+all = [
+  "numpy-quaternion",
+  "numpy",
+  "websockets", 
+  "h5py", 
+  "PyYaml"
+]
+docs = [
+  "Sphinx",
+  "sphinx-copybutton",
+  "sphinx-argparse",
+  "sphinx-book-theme"
+]
+
+[project.urls]
+Homepage = "https://github.com/jeguzzi/natnet_py"
+Documentation = "https://jeguzzi.github.io/natnet_py"
+Repository = "https://github.com/jeguzzi/natnet_py"
+"Bug Tracker" = "https://github.com/jeguzzi/natnet_py/issues"
+Changelog = "https://github.com/jeguzzi/natnet_py/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.package-data]
+natnet_py = ["py.typed", "gui.html"]
+
+[tool.distutils.bdist_wheel]
+universal = true
+
+[tool.setuptools-git-versioning]
+enabled = true
+# dirty_template = "{tag}-{ccount}+{branch}"
+
+[project.entry-points.console_scripts]
+natnet_client = 'natnet_py.natnet_cli:main'
+natnet_discover = 'natnet_py.natnet_discover:main'
+natnet_gui = 'natnet_py.natnet_gui:main'
+natnet_dump = 'natnet_py.natnet_dump:main'
+natnet_dummy = 'natnet_py.natnet_dummy:main'
+natnet = 'natnet_py.natnet_main:main'
+
+[tool.mypy]
+implicit_reexport = true
+ignore_missing_imports = true

@@ -11,7 +11,7 @@ from . import clock
 
 from collections.abc import Callable
 
-from typing import Any, TypeVar, Type, cast
+from typing import Any, TypeVar, cast
 
 T = TypeVar("T")
 CmdDataCallback = Callable[[protocol.MoCapData], None]
@@ -156,7 +156,7 @@ class CommandProtocol(asyncio.Protocol):
         return await self.send(protocol.Request(data), protocol.Response, timeout)
 
     async def send(
-        self, msg: protocol.Msg, response_type: Type[T], timeout: float = 0.0
+        self, msg: protocol.Msg, response_type: type[T], timeout: float = 0.0
     ) -> T | None:
         data = protocol.pack(msg)
         self._response: asyncio.Future[T] = asyncio.get_running_loop().create_future()
@@ -368,7 +368,7 @@ class AsyncClient:
         return False
 
     async def get_property(
-        self, name: bytes, kind: Type[T], node: bytes = b"", timeout: float = 0.0
+        self, name: bytes, kind: type[T], node: bytes = b"", timeout: float = 0.0
     ) -> T | None:
         # TODO(Jerome): not sure it's should delete empty tokens.
         # They list this as an example: `"GetProperty,,MoodLiveColor"`
@@ -413,9 +413,7 @@ class AsyncClient:
         """
         data = tokenize(b"EnableAsset", name)
         response = await self.send_request(data, timeout=timeout)
-        if response:
-            return True
-        return False
+        return bool(response)
 
     async def disable_asset(self, name: bytes, timeout: float = 0.0) -> bool:
         """
@@ -428,9 +426,7 @@ class AsyncClient:
         """
         data = tokenize(b"DisableAsset", name)
         response = await self.send_request(data, timeout=timeout)
-        if response:
-            return True
-        return False
+        return bool(response)
 
     async def clear_subscriptions(self, timeout: float = 0.0) -> bool:
         """
@@ -685,7 +681,7 @@ class AsyncClient:
 
 
             Once a server connects, the client automatically requires an updated description,
-            and updates :py:attr:`rigid_bodies_names`.
+            and updates :py:attr:`rigid_body_names`.
 
 
             :returns:   True if successful
@@ -766,13 +762,7 @@ class AsyncClient:
             try:
                 sock.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, membership)
                 sock.bind(("", self.data_port))
-            except (
-                OSError,
-                socket.error,
-                socket.herror,
-                socket.gaierror,
-                socket.timeout,
-            ) as msg:
+            except (OSError, socket.herror, socket.gaierror, TimeoutError) as msg:
                 self.logger.error(str(msg))
                 self.data_has_unconnected.set_result(None)
                 return False

@@ -1,22 +1,23 @@
 from __future__ import annotations
 
+import argparse
 import asyncio
 import json
 import logging
-import sys
-from typing import Any
-import webbrowser
 import os
-import argparse
-
-import websockets
-import websockets.server
+import sys
+import webbrowser
+from typing import Any
 
 import numpy as np
 import quaternion  # type: ignore
+import websockets
+import websockets.server
 
 from natnet_py import AsyncClient
 from natnet_py.protocol import MoCapData
+
+description = "Simple NatNet Client GUI"
 
 
 async def producer_handler(
@@ -38,13 +39,13 @@ def msg(data: MoCapData, names: dict[int, str]) -> Msg:
     for rb in data.rigid_bodies:
         q = np.quaternion(*rb.orientation)  # type: ignore
         rpy = [float(value) for value in quaternion.as_euler_angles(q)]
-        rbs[names.get(rb.id, str(rb.id))] = (rb.tracking_valid, *rb.position, *rpy)  # type: ignore
+        rbs[names.get(rb.id, str(rb.id))] = (rb.tracking_valid, *rb.position,
+                                             *rpy)  # type: ignore
     return rbs
 
 
-def parser(args: Any = None) -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser()
-    return parser
+def init_parser(parser: argparse.ArgumentParser) -> None:
+    pass
 
 
 class WebUI:
@@ -127,8 +128,7 @@ class WebUI:
             self.server.close()
 
 
-async def run(args: Any = None) -> None:
-    _ = parser().parse_args()
+async def run(args: argparse.Namespace) -> None:
     client = AsyncClient(queue=1)
     connected = await client.connect(discovery_address="255.255.255.255")
     if connected:
@@ -142,10 +142,16 @@ def open_html() -> None:
     webbrowser.open(f"file://{file}", new=1)
 
 
-def main(args: Any = None) -> None:
+def _main(args: argparse.Namespace) -> None:
     open_html()
-    asyncio.run(run())
+    asyncio.run(run(args))
 
 
-if __name__ == "__main__":
-    main()
+def parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser()
+    init_parser(p)
+    return p
+
+
+def main():
+    _main(parser().parse_args())

@@ -5,7 +5,7 @@ import enum
 import logging
 import socket
 from collections.abc import Callable
-from typing import Any, Protocol, Type, TypeVar, cast
+from typing import Any, Protocol, TypeVar, cast
 
 try:
     from typing import Self
@@ -52,7 +52,7 @@ T = TypeVar("T", bound=Msg)
 V = TypeVar("V")
 
 
-def unpack_items(cls: Type[T], data: Buffer) -> list[T]:
+def unpack_items(cls: type[T], data: Buffer) -> list[T]:
     count = data.read_int()
     return [cls.unpack(data) for _ in range(count)]
 
@@ -142,16 +142,16 @@ class MarkersData:
     def unpack(cls, data: Buffer) -> Self:
         markers = cls()
         marker_set_count = data.read_int()
-        for i in range(marker_set_count):
+        for _ in range(marker_set_count):
             marker_data = MarkerSetData()
             marker_data.name = data.read_string()
             marker_count = data.read_int()
-            for j in range(marker_count):
+            for _ in range(marker_count):
                 marker_data.positions.append(data.read_vector())
             markers.marker_sets.append(marker_data)
         unlabeled_markers_count = data.read_int()
         ps = markers.unlabeled_markers_positions
-        for i in range(unlabeled_markers_count):
+        for _ in range(unlabeled_markers_count):
             ps.append(data.read_vector())
         return markers
 
@@ -216,7 +216,7 @@ class RigidBodyData:
         if major < 3 and major != 0:
             marker_count = data.read_int()
             markers = rigid_body.markers
-            for i in range(marker_count):
+            for _ in range(marker_count):
                 markers.append(
                     RigidBodyMarkerData(position=data.read_vector()))
             if major >= 2:
@@ -287,8 +287,9 @@ class LabeledMarkerData:
     id: int
     """Unique identifier
 
-       For active markers, this is the Active ID. For passive markers, this is the PointCloud assigned ID.
-       For legacy assets that are created prior to 2.0, this is both AssetID (High-bit) and Member ID (Lo-bit)
+       For active markers, this is the Active ID. For passive markers,
+       this is the PointCloud assigned ID. For legacy assets that are created
+       prior to 2.0, this is both AssetID (High-bit) and Member ID (Lo-bit)
     """
     position: Vector3
     """marker position"""
@@ -650,7 +651,7 @@ class RigidBodyDescription:
                 names = [data.read_string() for _ in range(marker_count)]
             else:
                 names = ["" for _ in range(marker_count)]
-            for offset, label, name in zip(offsets, labels, names):
+            for offset, label, name in zip(offsets, labels, names, strict=True):
                 rb_desc.markers.append(RBMarker(name, label, offset))
         return rb_desc
 
@@ -711,11 +712,13 @@ class ForcePlateDescription:
     length: float = 0
     """plate physical length (manufacturer supplied)"""
     position: Vector3 = (0, 0, 0)
-    """electrical center offset (from electrical center to geometric center-top of force plate) (manufacturer supplied)"""
+    """electrical center offset (from electrical center to geometric center-top
+       of force plate) (manufacturer supplied)"""
     cal_matrix: Matrix12x12 | None = None
     """force plate calibration matrix (for raw analog voltage channel type only)"""
     corners: Matrix3x4 | None = None
-    """plate corners, in world (aka Mocap System) coordinates, clockwise from plate +x,+y (refer to C3D spec for details)"""
+    """plate corners, in world (aka Mocap System) coordinates, clockwise
+       from plate +x,+y (refer to C3D spec for details)"""
     plate_type: int = 0
     """force plate 'type' (refer to C3D spec for details)"""
     channel_data_type: int = 0
@@ -1079,7 +1082,7 @@ class NAT(enum.Enum):
     UNRECOGNIZED_REQUEST = 100
 
 
-message_types: dict[NAT, Type[Msg]] = {
+message_types: dict[NAT, type[Msg]] = {
     NAT.CONNECT: ConnectRequest,
     NAT.SERVERINFO: ServerInfo,
     NAT.REQUEST: Request,
@@ -1098,7 +1101,7 @@ message_types: dict[NAT, Type[Msg]] = {
     # NAT.UNRECOGNIZED_REQUEST: ,
 }
 
-message_ids: dict[Type[Msg], NAT] = {v: k for k, v in message_types.items()}
+message_ids: dict[type[Msg], NAT] = {v: k for k, v in message_types.items()}
 
 
 def get_message_id(data: Buffer) -> NAT | None:

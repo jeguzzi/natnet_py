@@ -166,3 +166,5 @@ playground
 archive
 *.h5
 TODO.md
+.doctrees
+.buildinfo

@@ -2,8 +2,27 @@
 Executables
 ===========
 
-The package contains two helper script to interact with the NatNet server
+The package contains commands to interact with the NatNet server.
 
+There are three ways to run a command ``<cmd>``:
+
+- standalone command
+  
+  .. code-block:: console
+   
+     $ natnet_<cmd>
+
+- sub-command
+  
+  .. code-block:: console
+     
+     $ natnet <cmd>
+
+- module executable
+  
+  .. code-block:: console
+     
+     $ python -m natnet_py <cmd>
 
 Discover
 ========
@@ -37,7 +56,7 @@ Interact with NatNet servers
 .. argparse::
    :module: natnet_py.natnet_cli
    :func: parser
-   :prog: natnet_cli
+   :prog: natnet_client
 
 
 Example
@@ -45,7 +64,7 @@ Example
 
 .. code-block:: console
 
-   $ natnet_cli
+   $ natnet_client
 
    NatNet Client CLI. Type help or ? to list commands.
 
@@ -156,3 +175,26 @@ Example
    $ natnet_gui
 
 .. image:: gui.png
+
+Dummy Server 
+============
+
+A dummy server to test NatNet clients
+
+.. argparse::
+   :module: natnet_py.natnet_dummy
+   :func: parser
+   :prog: natnet_dummy
+
+
+Example
+~~~~~~~
+
+.. code-block:: console
+
+   $ natnet_dummy
+
+   [...] INFO: Set rate to 30.0
+   [...] INFO: Start server on 0.0.0.0:1510
+   [...] INFO: Add client at ...
+   [...] INFO: Add client at ...

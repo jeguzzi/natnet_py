@@ -2,23 +2,14 @@
 
 import argparse
 import asyncio
-import logging
-from typing import Any
 
 from natnet_py import AsyncClient
+from natnet_py.utils import init_logging, set_log_level
+
+description = "Discover NatNet Servers"
 
 
-def init_logging() -> None:
-    FORMAT = "[%(asctime)s] %(levelname)s: %(message)s"
-    logging.basicConfig(format=FORMAT)
-
-
-def set_log_level(level_name: str) -> None:
-    logging.getLogger().setLevel(logging.getLevelName(level_name))
-
-
-def parser(args: Any = None) -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser()
+def init_parser(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--address", default="255.255.255.255",
         help="The broadcast address to announce this client")
@@ -30,15 +21,15 @@ def parser(args: Any = None) -> argparse.ArgumentParser:
     parser.add_argument(
         "--number", default=1, type=int,
         help="How many servers to discover")
-    return parser
 
 
-async def run() -> None:
+async def run(args: argparse.Namespace) -> None:
     init_logging()
-    args = parser().parse_args()
     set_log_level(args.log_level)
     client = AsyncClient()
-    servers = await client.discover(broadcast_address=args.address, timeout=args.timeout, number=args.number)
+    servers = await client.discover(
+        broadcast_address=args.address,
+        timeout=args.timeout, number=args.number)
     for (ip, port), info in servers.items():
         version = '.'.join(map(str, info.nat_net_stream_version_server.value))
         c_info = info.connection_info
@@ -55,5 +46,15 @@ async def run() -> None:
     await client.close()
 
 
-def main(args: Any = None) -> None:
-    asyncio.run(run())
+def _main(args: argparse.Namespace) -> None:
+    asyncio.run(run(args))
+
+
+def parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser()
+    init_parser(p)
+    return p
+
+
+def main():
+    _main(parser().parse_args())
