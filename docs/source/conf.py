@@ -9,7 +9,7 @@
 project = 'natnet_py'
 copyright = '2024, Jerome Guzzi'
 author = 'Jerome Guzzi'
-release = '0.0.1'
+release = '0.1.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
