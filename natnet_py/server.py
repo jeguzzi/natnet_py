@@ -7,6 +7,7 @@ import re
 import socket
 import struct
 import time
+from collections.abc import Callable
 from typing import Any, cast
 
 from . import protocol
@@ -66,7 +67,7 @@ class Server:
     def get_ns(self) -> int:
         return time.time_ns() - self.time_0
 
-    async def run(self):
+    async def run(self, termination: Callable[[], bool] | None = None):
         """
         Run the server
         """
@@ -87,8 +88,9 @@ class Server:
             sock=sock,
             # local_addr=(self.address, 1510)
         )
+        await asyncio.sleep(60)
         try:
-            await self.stream_mocap_data()
+            await self.stream_mocap_data(termination=termination)
         finally:
             self.close()
 
@@ -130,8 +132,8 @@ class Server:
                                   rigid_bodies=self.get_rigid_bodies_data(),
                                   suffix_data=suffix_data)
 
-    async def stream_mocap_data(self):
-        while True:
+    async def stream_mocap_data(self, termination: Callable[[], bool] | None = None):
+        while not termination or not termination():
             msg = self.get_mocap_data()
             data = protocol.pack(msg)
             if not self.multicast:
