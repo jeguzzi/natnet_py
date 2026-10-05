@@ -14,6 +14,7 @@ from . import protocol
 # dt_s = (1 + beta) * dt_c
 
 NanoSecondGetter = Callable[[], int]
+SyncUpdateCb = Callable[[], None]
 
 
 class Client(Protocol):
@@ -34,6 +35,7 @@ class SynchronizedClock:
         estimate_skew: bool = False,
         period: float = 500.0,
         now: NanoSecondGetter = time.time_ns,
+        sync_update_cb: SyncUpdateCb | None = None
     ) -> None:
         self._cmd = cmd
         self._freq = server_info.high_resolution_clock_frequency  # ticks / s
@@ -48,6 +50,7 @@ class SynchronizedClock:
         self.estimate_skew = estimate_skew
         self._period = period
         self._now_ns = now
+        self._sync_update_cb = sync_update_cb
 
     async def init(self) -> None:
         await self._start()
@@ -62,6 +65,8 @@ class SynchronizedClock:
         self.logger.info(f"Performing initial clock sync {self.count} ...")
         while self.count < 10:
             await self.echo()
+        if self._sync_update_cb:
+            self._sync_update_cb()
         self.logger.info(
             f"Initial clock sync done: min_rtt {self._min_rtt} ns, "
             f"beta {self._beta}, delta {self._t2_c - self._t2_s}"
@@ -72,6 +77,11 @@ class SynchronizedClock:
         while True:
             await asyncio.sleep(self._period)
             await self.echo()
+            if self._sync_update_cb:
+                self._sync_update_cb()
+            self.logger.info(
+                f"Current clock sync: min_rtt {self._min_rtt} ns, "
+                f"beta {self._beta}, delta {self._t2_c - self._t2_s}")
 
     def ticks_to_nanoseconds(self, ticks: int) -> int:
         return int(1e9 * ticks / self._freq)

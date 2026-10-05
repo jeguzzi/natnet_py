@@ -44,14 +44,19 @@ def parse(args: Any = None) -> argparse.Namespace:
     parser.add_argument("--no_sync", action='store_true')
     parser.add_argument("--timeout", default=1.0, type=float)
     parser.add_argument("--duration", default=2.0, type=float)
+    parser.add_argument("--estimate_clock_skew", action='store_true')
+    parser.add_argument("--sync_period", default=500, type=float)
     args = parser.parse_args(args)
     if args.iface:
         addrs = netifaces.ifaddresses(args.iface)
         if addrs:
             net = addrs[netifaces.AF_INET][0]
             args.client = net["addr"]
+            print(f'net {net}')
             if "broadcast" in net:
-                args.broadcast = net["broadcast"]
+                args.discovery = net["broadcast"]
+            else:
+                args.discovery = net["addr"]
     return args  # type: ignore
 
 

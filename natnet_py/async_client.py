@@ -268,6 +268,8 @@ class AsyncClient:
         logger: logging.Logger = logging.getLogger(),
         now: clock.NanoSecondGetter = time.time_ns,
         sync: bool = True,
+        estimate_clock_skew: bool = False,
+        sync_period: float = 500.0
     ):
         """
         Construct an instance
@@ -303,6 +305,8 @@ class AsyncClient:
         self.command_has_unconnected: asyncio.Future[None] | None = None
         self._now = now
         self._sync = sync
+        self._estimate_clock_skew = estimate_clock_skew
+        self._sync_period = sync_period
 
     @property
     def rigid_body_names(self) -> dict[int, str]:
@@ -729,6 +733,8 @@ class AsyncClient:
                 server_info=self.server_info,
                 logger=self.logger,
                 now=self._now,
+                estimate_skew=self._estimate_clock_skew,
+                period=self._sync_period
             )
             await self.clock.init()
         if start_listening_for_data:
